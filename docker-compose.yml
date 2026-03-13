@@ -1,0 +1,12 @@
+services:
+  bonita:
+    image: bonita:2025.1
+    ports:
+      - "8080:8080"
+    environment:
+      - BONITA_SERVER_LOGGING_FILE=
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/bonita"]
+      interval: 10s
+      timeout: 5s
+      retries: 30

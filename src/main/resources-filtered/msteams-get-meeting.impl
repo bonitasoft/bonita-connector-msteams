@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<implementation:connectorImplementation
+    xmlns:implementation="http://www.bonitasoft.org/ns/connector/implementation/6.0">
+    <implementationId>${msteams.get-meeting.impl.id}</implementationId>
+    <implementationVersion>${msteams.get-meeting.impl.version}</implementationVersion>
+    <definitionId>${msteams.get-meeting.def.id}</definitionId>
+    <definitionVersion>${msteams.get-meeting.def.version}</definitionVersion>
+    <implementationClassname>${msteams.get-meeting.main-class}</implementationClassname>
+    <hasSources>false</hasSources>
+    <description>Get online meeting details via Graph API implementation</description>
+${connector-dependencies}
+</implementation:connectorImplementation>

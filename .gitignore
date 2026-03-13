@@ -1,0 +1,17 @@
+target/
+*.class
+*.jar
+*.war
+*.ear
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.factorypath
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+.jqwik-database
