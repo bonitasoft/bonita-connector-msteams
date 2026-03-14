@@ -134,6 +134,52 @@ class AdaptiveCardBuilderTest {
                     .isInstanceOf(MSTeamsException.class)
                     .hasMessageContaining("28KB limit");
         }
+
+        @Test
+        void should_skip_null_title() {
+            ObjectNode result = new AdaptiveCardBuilder()
+                    .title(null)
+                    .body("content")
+                    .build();
+            JsonNode card = result.get("attachments").get(0).get("content");
+            assertThat(card.get("body")).hasSize(1); // only body, no title
+        }
+
+        @Test
+        void should_skip_null_body() {
+            ObjectNode result = new AdaptiveCardBuilder()
+                    .title("Title")
+                    .body(null)
+                    .build();
+            JsonNode card = result.get("attachments").get(0).get("content");
+            assertThat(card.get("body")).hasSize(1); // only title, no body
+        }
+
+        @Test
+        void should_skip_null_theme_color() {
+            ObjectNode result = new AdaptiveCardBuilder()
+                    .title("Test")
+                    .themeColor(null)
+                    .build();
+            assertThat(result.has("themeColor")).isFalse();
+        }
+
+        @Test
+        void should_build_card_with_title_body_facts_and_actions() {
+            ObjectNode result = new AdaptiveCardBuilder()
+                    .title("Title")
+                    .body("Body")
+                    .fact("F1", "V1")
+                    .action("Click", "https://example.com")
+                    .themeColor("00FF00")
+                    .build();
+
+            assertThat(result.get("themeColor").asText()).isEqualTo("00FF00");
+            JsonNode card = result.get("attachments").get(0).get("content");
+            // title + body + factSet = 3 elements
+            assertThat(card.get("body")).hasSize(3);
+            assertThat(card.get("actions")).hasSize(1);
+        }
     }
 
     @Nested

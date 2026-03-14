@@ -121,6 +121,63 @@ class MSTeamsConfigurationTest {
             var config = MSTeamsConfiguration.from(inputs);
             assertThat(config.tenantId()).isNull();
         }
+
+        @Test
+        void should_handle_string_boolean_values() {
+            Map<String, Object> inputs = new HashMap<>();
+            inputs.put("tenantId", "t");
+            inputs.put("clientId", "c");
+            inputs.put("clientSecret", "s");
+            inputs.put("appOnly", "true");
+            var config = MSTeamsConfiguration.from(inputs);
+            assertThat(config.isAppOnly()).isTrue();
+        }
+
+        @Test
+        void should_handle_boolean_value_directly() {
+            Map<String, Object> inputs = new HashMap<>();
+            inputs.put("tenantId", "t");
+            inputs.put("clientId", "c");
+            inputs.put("clientSecret", "s");
+            inputs.put("appOnly", Boolean.TRUE);
+            var config = MSTeamsConfiguration.from(inputs);
+            assertThat(config.isAppOnly()).isTrue();
+        }
+
+        @Test
+        void should_handle_integer_value_directly_in_map() {
+            Map<String, Object> inputs = new HashMap<>();
+            inputs.put("tenantId", "t");
+            inputs.put("clientId", "c");
+            inputs.put("clientSecret", "s");
+            inputs.put("connectTimeout", Integer.valueOf(7000));
+            var config = MSTeamsConfiguration.from(inputs);
+            assertThat(config.connectTimeout()).isEqualTo(7000);
+        }
+
+        @Test
+        void should_use_default_for_null_boolean() {
+            Map<String, Object> inputs = new HashMap<>();
+            inputs.put("tenantId", "t");
+            inputs.put("clientId", "c");
+            inputs.put("clientSecret", "s");
+            // appOnly not set at all
+            var config = MSTeamsConfiguration.from(inputs);
+            assertThat(config.isAppOnly()).isFalse();
+        }
+
+        @Test
+        void should_use_default_for_null_timeout() {
+            Map<String, Object> inputs = new HashMap<>();
+            inputs.put("tenantId", "t");
+            inputs.put("clientId", "c");
+            inputs.put("clientSecret", "s");
+            inputs.put("connectTimeout", null);
+            inputs.put("readTimeout", null);
+            var config = MSTeamsConfiguration.from(inputs);
+            assertThat(config.connectTimeout()).isEqualTo(30_000);
+            assertThat(config.readTimeout()).isEqualTo(60_000);
+        }
     }
 
     @Nested

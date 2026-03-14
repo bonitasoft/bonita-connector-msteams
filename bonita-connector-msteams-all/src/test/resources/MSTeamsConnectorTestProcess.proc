@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+  xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bonita="http://bonitasoft.com/ns/process/client/7.x"
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+  targetNamespace="http://bonitasoft.com/MSTeamsConnectorTestProcess/1.0"
+  exporter="Bonita Studio"
+  exporterVersion="2025.2">
+
+  <collaboration id="Collab_MSTeamsConnectorTestProcess">
+    <participant id="pool_MSTeamsConnectorTestProcess" name="MS Teams Connector Test Process" processRef="MSTeamsConnectorTestProcess"/>
+  </collaboration>
+
+  <process id="MSTeamsConnectorTestProcess" name="MS Teams Connector Test Process" isExecutable="true">
+    <documentation>Test process with 14 service tasks exercising all MS Teams connector operations.
+Each service task is configured with its corresponding connector definition.
+Process variables hold common authentication parameters and operation-specific inputs.</documentation>
+
+    <!-- ============================================ -->
+    <!-- PROCESS VARIABLES                            -->
+    <!-- ============================================ -->
+
+    <!-- Auth (shared by all connectors) -->
+    <extensionElements>
+      <bonita:data name="tenantId" type="java.lang.String"/>
+      <bonita:data name="clientId" type="java.lang.String"/>
+      <bonita:data name="clientSecret" type="java.lang.String"/>
+      <bonita:data name="refreshToken" type="java.lang.String"/>
+      <bonita:data name="userId" type="java.lang.String"/>
+
+      <!-- Messaging -->
+      <bonita:data name="teamId" type="java.lang.String"/>
+      <bonita:data name="channelId" type="java.lang.String"/>
+      <bonita:data name="chatId" type="java.lang.String"/>
+      <bonita:data name="messageContent" type="java.lang.String"/>
+      <bonita:data name="parentMessageId" type="java.lang.String"/>
+      <bonita:data name="cardJson" type="java.lang.String"/>
+
+      <!-- Channel management -->
+      <bonita:data name="channelDisplayName" type="java.lang.String"/>
+      <bonita:data name="channelDescription" type="java.lang.String"/>
+      <bonita:data name="createdChannelId" type="java.lang.String"/>
+
+      <!-- Team membership -->
+      <bonita:data name="userPrincipalName" type="java.lang.String"/>
+      <bonita:data name="membershipId" type="java.lang.String"/>
+
+      <!-- Meetings -->
+      <bonita:data name="meetingSubject" type="java.lang.String"/>
+      <bonita:data name="startDateTime" type="java.lang.String"/>
+      <bonita:data name="endDateTime" type="java.lang.String"/>
+      <bonita:data name="meetingId" type="java.lang.String"/>
+
+      <!-- Files -->
+      <bonita:data name="fileName" type="java.lang.String"/>
+      <bonita:data name="fileContent" type="java.lang.String"/>
+    </extensionElements>
+
+    <!-- ============================================ -->
+    <!-- LANE SET                                     -->
+    <!-- ============================================ -->
+
+    <laneSet id="laneSet_MSTeamsConnectorTestProcess">
+      <lane id="lane_System" name="System">
+        <flowNodeRef>start</flowNodeRef>
+        <flowNodeRef>sendChannelMessage</flowNodeRef>
+        <flowNodeRef>sendChatMessage</flowNodeRef>
+        <flowNodeRef>replyMessage</flowNodeRef>
+        <flowNodeRef>sendAdaptiveCard</flowNodeRef>
+        <flowNodeRef>createChannel</flowNodeRef>
+        <flowNodeRef>listChannels</flowNodeRef>
+        <flowNodeRef>deleteChannel</flowNodeRef>
+        <flowNodeRef>listTeams</flowNodeRef>
+        <flowNodeRef>getTeam</flowNodeRef>
+        <flowNodeRef>addMember</flowNodeRef>
+        <flowNodeRef>removeMember</flowNodeRef>
+        <flowNodeRef>createMeeting</flowNodeRef>
+        <flowNodeRef>getMeeting</flowNodeRef>
+        <flowNodeRef>uploadFile</flowNodeRef>
+        <flowNodeRef>end</flowNodeRef>
+      </lane>
+    </laneSet>
+
+    <!-- ============================================ -->
+    <!-- FLOW NODES                                   -->
+    <!-- ============================================ -->
+
+    <startEvent id="start" name="Start"/>
+
+    <!-- 1. Send Channel Message -->
+    <serviceTask id="sendChannelMessage" name="Send Channel Message">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-send-channel-message" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="teamId" expression="teamId"/>
+          <bonita:input name="channelId" expression="channelId"/>
+          <bonita:input name="messageContent" expression="messageContent"/>
+          <bonita:input name="contentType" expression="text"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+          <bonita:output name="messageId" expression="parentMessageId"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 2. Send Chat Message -->
+    <serviceTask id="sendChatMessage" name="Send Chat Message">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-send-chat-message" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="chatId" expression="chatId"/>
+          <bonita:input name="messageContent" expression="messageContent"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 3. Reply Message -->
+    <serviceTask id="replyMessage" name="Reply Message">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-reply-message" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="teamId" expression="teamId"/>
+          <bonita:input name="channelId" expression="channelId"/>
+          <bonita:input name="parentMessageId" expression="parentMessageId"/>
+          <bonita:input name="messageContent" expression="messageContent"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 4. Send Adaptive Card -->
+    <serviceTask id="sendAdaptiveCard" name="Send Adaptive Card">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-send-adaptive-card" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="teamId" expression="teamId"/>
+          <bonita:input name="channelId" expression="channelId"/>
+          <bonita:input name="cardJson" expression="cardJson"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 5. Create Channel -->
+    <serviceTask id="createChannel" name="Create Channel">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-create-channel" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="teamId" expression="teamId"/>
+          <bonita:input name="displayName" expression="channelDisplayName"/>
+          <bonita:input name="description" expression="channelDescription"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+          <bonita:output name="channelId" expression="createdChannelId"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 6. List Channels -->
+    <serviceTask id="listChannels" name="List Channels">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-list-channels" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="teamId" expression="teamId"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 7. Delete Channel -->
+    <serviceTask id="deleteChannel" name="Delete Channel">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-delete-channel" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="teamId" expression="teamId"/>
+          <bonita:input name="channelId" expression="createdChannelId"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 8. List Teams -->
+    <serviceTask id="listTeams" name="List Teams">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-list-teams" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 9. Get Team -->
+    <serviceTask id="getTeam" name="Get Team">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-get-team" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="teamId" expression="teamId"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 10. Add Member -->
+    <serviceTask id="addMember" name="Add Member">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-add-member" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="teamId" expression="teamId"/>
+          <bonita:input name="userPrincipalName" expression="userPrincipalName"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+          <bonita:output name="membershipId" expression="membershipId"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 11. Remove Member -->
+    <serviceTask id="removeMember" name="Remove Member">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-remove-member" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="teamId" expression="teamId"/>
+          <bonita:input name="membershipId" expression="membershipId"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 12. Create Meeting -->
+    <serviceTask id="createMeeting" name="Create Meeting">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-create-meeting" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="userId" expression="userId"/>
+          <bonita:input name="subject" expression="meetingSubject"/>
+          <bonita:input name="startDateTime" expression="startDateTime"/>
+          <bonita:input name="endDateTime" expression="endDateTime"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+          <bonita:output name="meetingId" expression="meetingId"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 13. Get Meeting -->
+    <serviceTask id="getMeeting" name="Get Meeting">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-get-meeting" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="userId" expression="userId"/>
+          <bonita:input name="meetingId" expression="meetingId"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <!-- 14. Upload File -->
+    <serviceTask id="uploadFile" name="Upload File">
+      <extensionElements>
+        <bonita:connector connectorId="msteams-upload-file" version="1.0.0">
+          <bonita:input name="tenantId" expression="tenantId"/>
+          <bonita:input name="clientId" expression="clientId"/>
+          <bonita:input name="clientSecret" expression="clientSecret"/>
+          <bonita:input name="teamId" expression="teamId"/>
+          <bonita:input name="channelId" expression="channelId"/>
+          <bonita:input name="fileName" expression="fileName"/>
+          <bonita:input name="fileContent" expression="fileContent"/>
+          <bonita:output name="success" expression="success"/>
+          <bonita:output name="errorMessage" expression="errorMessage"/>
+        </bonita:connector>
+      </extensionElements>
+    </serviceTask>
+
+    <endEvent id="end" name="End"/>
+
+    <!-- ============================================ -->
+    <!-- SEQUENCE FLOWS                               -->
+    <!-- ============================================ -->
+
+    <sequenceFlow id="flow_start_sendChannelMessage" sourceRef="start" targetRef="sendChannelMessage"/>
+    <sequenceFlow id="flow_sendChannelMessage_sendChatMessage" sourceRef="sendChannelMessage" targetRef="sendChatMessage"/>
+    <sequenceFlow id="flow_sendChatMessage_replyMessage" sourceRef="sendChatMessage" targetRef="replyMessage"/>
+    <sequenceFlow id="flow_replyMessage_sendAdaptiveCard" sourceRef="replyMessage" targetRef="sendAdaptiveCard"/>
+    <sequenceFlow id="flow_sendAdaptiveCard_createChannel" sourceRef="sendAdaptiveCard" targetRef="createChannel"/>
+    <sequenceFlow id="flow_createChannel_listChannels" sourceRef="createChannel" targetRef="listChannels"/>
+    <sequenceFlow id="flow_listChannels_deleteChannel" sourceRef="listChannels" targetRef="deleteChannel"/>
+    <sequenceFlow id="flow_deleteChannel_listTeams" sourceRef="deleteChannel" targetRef="listTeams"/>
+    <sequenceFlow id="flow_listTeams_getTeam" sourceRef="listTeams" targetRef="getTeam"/>
+    <sequenceFlow id="flow_getTeam_addMember" sourceRef="getTeam" targetRef="addMember"/>
+    <sequenceFlow id="flow_addMember_removeMember" sourceRef="addMember" targetRef="removeMember"/>
+    <sequenceFlow id="flow_removeMember_createMeeting" sourceRef="removeMember" targetRef="createMeeting"/>
+    <sequenceFlow id="flow_createMeeting_getMeeting" sourceRef="createMeeting" targetRef="getMeeting"/>
+    <sequenceFlow id="flow_getMeeting_uploadFile" sourceRef="getMeeting" targetRef="uploadFile"/>
+    <sequenceFlow id="flow_uploadFile_end" sourceRef="uploadFile" targetRef="end"/>
+
+  </process>
+
+  <!-- ============================================ -->
+  <!-- DIAGRAM                                      -->
+  <!-- ============================================ -->
+
+  <bpmndi:BPMNDiagram id="diagram_MSTeamsConnectorTestProcess">
+    <bpmndi:BPMNPlane id="plane_MSTeamsConnectorTestProcess" bpmnElement="Collab_MSTeamsConnectorTestProcess">
+
+      <bpmndi:BPMNShape id="shape_pool" bpmnElement="pool_MSTeamsConnectorTestProcess" isHorizontal="true">
+        <dc:Bounds x="20" y="20" width="3100" height="300"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="shape_lane_System" bpmnElement="lane_System" isHorizontal="true">
+        <dc:Bounds x="50" y="20" width="3070" height="300"/>
+      </bpmndi:BPMNShape>
+
+      <!-- Row 1: Start + tasks 1-7 -->
+      <bpmndi:BPMNShape id="shape_start" bpmnElement="start">
+        <dc:Bounds x="80" y="142" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_sendChannelMessage" bpmnElement="sendChannelMessage">
+        <dc:Bounds x="170" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_sendChatMessage" bpmnElement="sendChatMessage">
+        <dc:Bounds x="380" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_replyMessage" bpmnElement="replyMessage">
+        <dc:Bounds x="590" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_sendAdaptiveCard" bpmnElement="sendAdaptiveCard">
+        <dc:Bounds x="800" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_createChannel" bpmnElement="createChannel">
+        <dc:Bounds x="1010" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_listChannels" bpmnElement="listChannels">
+        <dc:Bounds x="1220" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_deleteChannel" bpmnElement="deleteChannel">
+        <dc:Bounds x="1430" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_listTeams" bpmnElement="listTeams">
+        <dc:Bounds x="1640" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_getTeam" bpmnElement="getTeam">
+        <dc:Bounds x="1850" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_addMember" bpmnElement="addMember">
+        <dc:Bounds x="2060" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_removeMember" bpmnElement="removeMember">
+        <dc:Bounds x="2270" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_createMeeting" bpmnElement="createMeeting">
+        <dc:Bounds x="2480" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_getMeeting" bpmnElement="getMeeting">
+        <dc:Bounds x="2690" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_uploadFile" bpmnElement="uploadFile">
+        <dc:Bounds x="2900" y="120" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <!-- End -->
+      <bpmndi:BPMNShape id="shape_end" bpmnElement="end">
+        <dc:Bounds x="3090" y="142" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <!-- Edges -->
+      <bpmndi:BPMNEdge id="edge_start_sendChannelMessage" bpmnElement="flow_start_sendChannelMessage">
+        <di:waypoint x="116" y="160"/>
+        <di:waypoint x="170" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_sendChannelMessage_sendChatMessage" bpmnElement="flow_sendChannelMessage_sendChatMessage">
+        <di:waypoint x="330" y="160"/>
+        <di:waypoint x="380" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_sendChatMessage_replyMessage" bpmnElement="flow_sendChatMessage_replyMessage">
+        <di:waypoint x="540" y="160"/>
+        <di:waypoint x="590" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_replyMessage_sendAdaptiveCard" bpmnElement="flow_replyMessage_sendAdaptiveCard">
+        <di:waypoint x="750" y="160"/>
+        <di:waypoint x="800" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_sendAdaptiveCard_createChannel" bpmnElement="flow_sendAdaptiveCard_createChannel">
+        <di:waypoint x="960" y="160"/>
+        <di:waypoint x="1010" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_createChannel_listChannels" bpmnElement="flow_createChannel_listChannels">
+        <di:waypoint x="1170" y="160"/>
+        <di:waypoint x="1220" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_listChannels_deleteChannel" bpmnElement="flow_listChannels_deleteChannel">
+        <di:waypoint x="1380" y="160"/>
+        <di:waypoint x="1430" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_deleteChannel_listTeams" bpmnElement="flow_deleteChannel_listTeams">
+        <di:waypoint x="1590" y="160"/>
+        <di:waypoint x="1640" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_listTeams_getTeam" bpmnElement="flow_listTeams_getTeam">
+        <di:waypoint x="1800" y="160"/>
+        <di:waypoint x="1850" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_getTeam_addMember" bpmnElement="flow_getTeam_addMember">
+        <di:waypoint x="2010" y="160"/>
+        <di:waypoint x="2060" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_addMember_removeMember" bpmnElement="flow_addMember_removeMember">
+        <di:waypoint x="2220" y="160"/>
+        <di:waypoint x="2270" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_removeMember_createMeeting" bpmnElement="flow_removeMember_createMeeting">
+        <di:waypoint x="2430" y="160"/>
+        <di:waypoint x="2480" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_createMeeting_getMeeting" bpmnElement="flow_createMeeting_getMeeting">
+        <di:waypoint x="2640" y="160"/>
+        <di:waypoint x="2690" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_getMeeting_uploadFile" bpmnElement="flow_getMeeting_uploadFile">
+        <di:waypoint x="2850" y="160"/>
+        <di:waypoint x="2900" y="160"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_uploadFile_end" bpmnElement="flow_uploadFile_end">
+        <di:waypoint x="3060" y="160"/>
+        <di:waypoint x="3090" y="160"/>
+      </bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

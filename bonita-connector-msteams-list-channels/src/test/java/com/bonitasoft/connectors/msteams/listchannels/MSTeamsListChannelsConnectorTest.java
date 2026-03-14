@@ -76,5 +76,29 @@ class MSTeamsListChannelsConnectorTest {
             when(mockClient.get("/teams/team-123/channels")).thenThrow(new MSTeamsException("error"));
             assertThatThrownBy(() -> connector.executeOperation(mockClient)).isInstanceOf(MSTeamsException.class);
         }
+        @Test @SuppressWarnings("unchecked") void should_handle_null_value_node() throws Exception {
+            connector.setInputParameters(validParams()); connector.setClient(mockClient);
+            when(mockClient.get("/teams/team-123/channels")).thenReturn(MAPPER.readTree("{\"other\":\"x\"}"));
+            connector.executeOperation(mockClient);
+            List<Map<String, Object>> channels = (List<Map<String, Object>>) connector.getOutputs().get("channels");
+            assertThat(channels).isEmpty();
+            assertThat(connector.getOutputs().get("totalCount")).isEqualTo(0);
+        }
+        @Test @SuppressWarnings("unchecked") void should_handle_channels_without_optional_fields() throws Exception {
+            connector.setInputParameters(validParams()); connector.setClient(mockClient);
+            when(mockClient.get("/teams/team-123/channels")).thenReturn(MAPPER.readTree(
+                    "{\"value\":[{\"other\":\"x\"}]}"));
+            connector.executeOperation(mockClient);
+            List<Map<String, Object>> channels = (List<Map<String, Object>>) connector.getOutputs().get("channels");
+            assertThat(channels).hasSize(1);
+            assertThat(channels.get(0).get("id")).isNull();
+            assertThat(channels.get(0).get("displayName")).isNull();
+            assertThat(channels.get(0).get("description")).isNull();
+            assertThat(channels.get(0).get("membershipType")).isNull();
+        }
+        @Test void should_fail_when_teamId_is_blank() {
+            Map<String, Object> p = validParams(); p.put("teamId", "  "); connector.setInputParameters(p);
+            assertThatThrownBy(() -> connector.validateInputParameters()).isInstanceOf(ConnectorValidationException.class).hasMessageContaining("teamId");
+        }
     }
 }

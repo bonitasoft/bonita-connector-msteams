@@ -167,6 +167,21 @@ class MSTeamsGetMeetingConnectorTest {
         }
 
         @Test
+        @DisplayName("should fail when userId is missing")
+        void should_fail_when_userId_missing() {
+            Map<String, Object> params = new HashMap<>();
+            params.put("tenantId", "test-tenant");
+            params.put("clientId", "test-client-id");
+            params.put("clientSecret", "test-secret");
+            params.put("meetingId", "meeting-123");
+            connector.setInputParameters(params);
+
+            assertThatThrownBy(() -> connector.validateInputParameters())
+                    .isInstanceOf(ConnectorValidationException.class)
+                    .hasMessageContaining("userId");
+        }
+
+        @Test
         @DisplayName("should handle missing participants node")
         void should_handle_missing_participants() throws Exception {
             Map<String, Object> params = new HashMap<>();

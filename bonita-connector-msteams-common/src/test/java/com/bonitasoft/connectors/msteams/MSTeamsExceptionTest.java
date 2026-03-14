@@ -108,6 +108,25 @@ class MSTeamsExceptionTest {
             MSTeamsException ex = MSTeamsException.fromGraphError(500, null, "server error");
             assertThat(ex.getReason()).isEqualTo("unknown");
         }
+
+        @Test
+        void should_create_retryable_for_serviceNotAvailable() {
+            MSTeamsException ex = MSTeamsException.fromGraphError(500, "serviceNotAvailable", "unavailable");
+            assertThat(ex.isRetryable()).isTrue();
+        }
+
+        @Test
+        void should_not_be_retryable_for_403_generic() {
+            MSTeamsException ex = MSTeamsException.fromGraphError(403, "Forbidden", "denied");
+            assertThat(ex.isRetryable()).isFalse();
+        }
+
+        @Test
+        void should_create_with_409_status() {
+            MSTeamsException ex = MSTeamsException.fromGraphError(409, "Conflict", "conflict");
+            assertThat(ex.isRetryable()).isFalse();
+            assertThat(ex.getStatusCode()).isEqualTo(409);
+        }
     }
 
     @Nested

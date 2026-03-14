@@ -87,5 +87,46 @@ class MSTeamsCreateChannelConnectorTest {
             when(mockClient.post(anyString(), anyString())).thenThrow(new MSTeamsException("error", 400, "BadRequest", false, null));
             assertThatThrownBy(() -> connector.executeOperation(mockClient)).isInstanceOf(MSTeamsException.class);
         }
+        @Test void should_handle_response_without_optional_fields() throws Exception {
+            connector.setInputParameters(validParams()); connector.setClient(mockClient);
+            when(mockClient.post(anyString(), anyString()))
+                    .thenReturn(MAPPER.readTree("{\"otherField\":\"value\"}"));
+            connector.executeOperation(mockClient);
+            assertThat(connector.getOutputs().get("channelId")).isNull();
+            assertThat(connector.getOutputs().get("displayName")).isNull();
+            assertThat(connector.getOutputs().get("webUrl")).isNull();
+        }
+        @Test void should_execute_without_description() throws Exception {
+            // description is null (not set at all)
+            connector.setInputParameters(validParams()); connector.setClient(mockClient);
+            when(mockClient.post(anyString(), anyString()))
+                    .thenReturn(MAPPER.readTree("{\"id\":\"ch-3\",\"displayName\":\"General\"}"));
+            connector.executeOperation(mockClient);
+            assertThat(connector.getOutputs().get("channelId")).isEqualTo("ch-3");
+        }
+        @Test void should_execute_with_blank_description() throws Exception {
+            Map<String, Object> p = validParams(); p.put("description", "  ");
+            connector.setInputParameters(p); connector.setClient(mockClient);
+            when(mockClient.post(anyString(), anyString()))
+                    .thenReturn(MAPPER.readTree("{\"id\":\"ch-4\",\"displayName\":\"General\"}"));
+            connector.executeOperation(mockClient);
+            assertThat(connector.getOutputs().get("channelId")).isEqualTo("ch-4");
+        }
+        @Test void should_execute_with_custom_membership_type() throws Exception {
+            Map<String, Object> p = validParams(); p.put("membershipType", "private");
+            connector.setInputParameters(p); connector.setClient(mockClient);
+            when(mockClient.post(anyString(), anyString()))
+                    .thenReturn(MAPPER.readTree("{\"id\":\"ch-5\",\"displayName\":\"Private\"}"));
+            connector.executeOperation(mockClient);
+            verify(mockClient).post(anyString(), org.mockito.ArgumentMatchers.contains("private"));
+        }
+        @Test void should_fail_when_teamId_is_blank() {
+            Map<String, Object> p = validParams(); p.put("teamId", "  "); connector.setInputParameters(p);
+            assertThatThrownBy(() -> connector.validateInputParameters()).isInstanceOf(ConnectorValidationException.class).hasMessageContaining("teamId");
+        }
+        @Test void should_fail_when_displayName_is_blank() {
+            Map<String, Object> p = validParams(); p.put("displayName", "  "); connector.setInputParameters(p);
+            assertThatThrownBy(() -> connector.validateInputParameters()).isInstanceOf(ConnectorValidationException.class).hasMessageContaining("displayName");
+        }
     }
 }

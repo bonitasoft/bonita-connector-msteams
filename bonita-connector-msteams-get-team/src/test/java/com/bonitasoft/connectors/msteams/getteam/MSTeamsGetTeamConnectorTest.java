@@ -74,5 +74,29 @@ class MSTeamsGetTeamConnectorTest {
             when(mockClient.get("/teams/team-123")).thenThrow(new MSTeamsException("error", 404, "NotFound", false, null));
             assertThatThrownBy(() -> connector.executeOperation(mockClient)).isInstanceOf(MSTeamsException.class);
         }
+        @Test void should_handle_response_without_optional_fields() throws Exception {
+            connector.setInputParameters(validParams()); connector.setClient(mockClient);
+            when(mockClient.get("/teams/team-123")).thenReturn(MAPPER.readTree("{\"other\":\"x\"}"));
+            connector.executeOperation(mockClient);
+            assertThat(connector.getOutputs().get("teamId")).isNull();
+            assertThat(connector.getOutputs().get("displayName")).isNull();
+            assertThat(connector.getOutputs().get("description")).isNull();
+            assertThat(connector.getOutputs().get("visibility")).isNull();
+            assertThat(connector.getOutputs().get("isArchived")).isEqualTo(false);
+            assertThat(connector.getOutputs().get("webUrl")).isNull();
+        }
+        @Test void should_handle_archived_team() throws Exception {
+            connector.setInputParameters(validParams()); connector.setClient(mockClient);
+            when(mockClient.get("/teams/team-123")).thenReturn(MAPPER.readTree(
+                    "{\"id\":\"team-123\",\"displayName\":\"Archived\",\"isArchived\":true,\"visibility\":\"private\",\"webUrl\":\"https://url\"}"));
+            connector.executeOperation(mockClient);
+            assertThat(connector.getOutputs().get("isArchived")).isEqualTo(true);
+            assertThat(connector.getOutputs().get("visibility")).isEqualTo("private");
+            assertThat(connector.getOutputs().get("webUrl")).isEqualTo("https://url");
+        }
+        @Test void should_fail_when_teamId_is_blank() {
+            Map<String, Object> p = validParams(); p.put("teamId", "  "); connector.setInputParameters(p);
+            assertThatThrownBy(() -> connector.validateInputParameters()).isInstanceOf(ConnectorValidationException.class).hasMessageContaining("teamId");
+        }
     }
 }

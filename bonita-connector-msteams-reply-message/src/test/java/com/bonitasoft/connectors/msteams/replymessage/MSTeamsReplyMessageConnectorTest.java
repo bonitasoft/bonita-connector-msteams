@@ -154,6 +154,94 @@ class MSTeamsReplyMessageConnectorTest {
             when(mockClient.post(anyString(), anyString())).thenThrow(new MSTeamsException("error"));
             assertThatThrownBy(() -> connector.executeOperation(mockClient)).isInstanceOf(MSTeamsException.class);
         }
+
+        @Test
+        @DisplayName("should_wrap_generic_exception_in_msteams_exception")
+        void should_wrap_generic_exception() {
+            connector.setInputParameters(validParams());
+            connector.setClient(mockClient);
+            when(mockClient.getObjectMapper()).thenThrow(new RuntimeException("unexpected"));
+            assertThatThrownBy(() -> connector.executeOperation(mockClient))
+                    .isInstanceOf(MSTeamsException.class)
+                    .hasMessageContaining("Failed to reply to message");
+        }
+
+        @Test
+        @DisplayName("should_execute_with_html_content_type")
+        void should_execute_with_html_content_type() throws Exception {
+            Map<String, Object> params = validParams();
+            params.put("contentType", "html");
+            connector.setInputParameters(params);
+            connector.setClient(mockClient);
+
+            ObjectMapper mapper = new ObjectMapper();
+            when(mockClient.getObjectMapper()).thenReturn(mapper);
+            when(mockClient.post(anyString(), anyString()))
+                    .thenReturn(mapper.readTree("{\"id\":\"reply-2\",\"createdDateTime\":\"2026-03-13T11:00:00Z\"}"));
+
+            connector.executeOperation(mockClient);
+            verify(mockClient).post(anyString(), org.mockito.ArgumentMatchers.contains("\"contentType\":\"html\""));
+        }
+    }
+
+    @Nested
+    @DisplayName("Validation extras")
+    class ValidationExtras {
+
+        @Test
+        @DisplayName("should_fail_when_teamId_is_blank")
+        void should_fail_when_teamId_is_blank() {
+            Map<String, Object> params = validParams();
+            params.put("teamId", "  ");
+            connector.setInputParameters(params);
+            assertThatThrownBy(() -> connector.validateInputParameters())
+                    .isInstanceOf(ConnectorValidationException.class)
+                    .hasMessageContaining("teamId");
+        }
+
+        @Test
+        @DisplayName("should_fail_when_channelId_is_blank")
+        void should_fail_when_channelId_is_blank() {
+            Map<String, Object> params = validParams();
+            params.put("channelId", "  ");
+            connector.setInputParameters(params);
+            assertThatThrownBy(() -> connector.validateInputParameters())
+                    .isInstanceOf(ConnectorValidationException.class)
+                    .hasMessageContaining("channelId");
+        }
+
+        @Test
+        @DisplayName("should_fail_when_parentMessageId_is_blank")
+        void should_fail_when_parentMessageId_is_blank() {
+            Map<String, Object> params = validParams();
+            params.put("parentMessageId", "  ");
+            connector.setInputParameters(params);
+            assertThatThrownBy(() -> connector.validateInputParameters())
+                    .isInstanceOf(ConnectorValidationException.class)
+                    .hasMessageContaining("parentMessageId");
+        }
+
+        @Test
+        @DisplayName("should_fail_when_messageContent_is_blank")
+        void should_fail_when_messageContent_is_blank() {
+            Map<String, Object> params = validParams();
+            params.put("messageContent", "  ");
+            connector.setInputParameters(params);
+            assertThatThrownBy(() -> connector.validateInputParameters())
+                    .isInstanceOf(ConnectorValidationException.class)
+                    .hasMessageContaining("messageContent");
+        }
+
+        @Test
+        @DisplayName("should_fail_when_messageContent_exceeds_max_length")
+        void should_fail_when_messageContent_exceeds_max_length() {
+            Map<String, Object> params = validParams();
+            params.put("messageContent", "x".repeat(28_001));
+            connector.setInputParameters(params);
+            assertThatThrownBy(() -> connector.validateInputParameters())
+                    .isInstanceOf(ConnectorValidationException.class)
+                    .hasMessageContaining("exceeds maximum length");
+        }
     }
 
     @Nested

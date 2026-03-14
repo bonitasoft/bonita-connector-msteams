@@ -284,6 +284,59 @@ class AbstractMSTeamsConnectorTest {
         }
     }
 
+    @Nested
+    @DisplayName("connect")
+    class Connect {
+
+        @Test
+        void should_throw_connector_exception_when_authentication_fails() {
+            Map<String, Object> p = validParams();
+            p.put("connectTimeout", 1000);
+            p.put("readTimeout", 1000);
+            connector.setInputParameters(p);
+            assertThatThrownBy(() -> connector.connect())
+                    .isInstanceOf(ConnectorException.class)
+                    .hasMessageContaining("Failed to connect");
+        }
+    }
+
+    @Nested
+    @DisplayName("isBlank")
+    class IsBlankTests {
+
+        @Test
+        void should_return_true_for_null() {
+            assertThat(AbstractMSTeamsConnector.isBlank(null)).isTrue();
+        }
+
+        @Test
+        void should_return_true_for_empty() {
+            assertThat(AbstractMSTeamsConnector.isBlank("")).isTrue();
+        }
+
+        @Test
+        void should_return_true_for_whitespace() {
+            assertThat(AbstractMSTeamsConnector.isBlank("   ")).isTrue();
+        }
+
+        @Test
+        void should_return_false_for_non_blank() {
+            assertThat(AbstractMSTeamsConnector.isBlank("text")).isFalse();
+        }
+    }
+
+    @Nested
+    @DisplayName("getListInput edge cases")
+    class ListInputEdgeCases {
+
+        @Test
+        void should_return_null_for_missing_list() {
+            Map<String, Object> p = new HashMap<>();
+            connector.setInputParameters(p);
+            assertThat(connector.<String>getListInput("missing")).isNull();
+        }
+    }
+
     /**
      * Concrete test implementation of AbstractMSTeamsConnector.
      */

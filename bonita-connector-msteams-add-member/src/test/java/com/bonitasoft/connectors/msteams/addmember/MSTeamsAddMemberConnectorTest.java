@@ -93,5 +93,30 @@ class MSTeamsAddMemberConnectorTest {
             when(mockClient.post(anyString(), anyString())).thenThrow(new MSTeamsException("API error", 403, "Forbidden", false, null));
             assertThatThrownBy(() -> connector.executeOperation(mockClient)).isInstanceOf(MSTeamsException.class);
         }
+        @Test void should_handle_response_without_id_or_displayName() throws Exception {
+            connector.setInputParameters(validParams()); connector.setClient(mockClient);
+            when(mockClient.post(anyString(), anyString()))
+                    .thenReturn(MAPPER.readTree("{\"otherField\":\"value\"}"));
+            connector.executeOperation(mockClient);
+            assertThat(connector.getOutputs().get("membershipId")).isNull();
+            assertThat(connector.getOutputs().get("displayName")).isNull();
+        }
+        @Test void should_use_default_member_role_when_role_is_blank() throws Exception {
+            Map<String, Object> p = validParams(); p.put("role", "  ");
+            connector.setInputParameters(p); connector.setClient(mockClient);
+            when(mockClient.post(anyString(), anyString()))
+                    .thenReturn(MAPPER.readTree("{\"id\":\"m-3\",\"displayName\":\"User\"}"));
+            connector.executeOperation(mockClient);
+            // blank role defaults to "member" — verify empty roles array
+            verify(mockClient).post(anyString(), org.mockito.ArgumentMatchers.contains("\"roles\":[]"));
+        }
+        @Test void should_fail_when_teamId_is_blank() {
+            Map<String, Object> p = validParams(); p.put("teamId", "  "); connector.setInputParameters(p);
+            assertThatThrownBy(() -> connector.validateInputParameters()).isInstanceOf(ConnectorValidationException.class).hasMessageContaining("teamId");
+        }
+        @Test void should_fail_when_userPrincipalName_is_blank() {
+            Map<String, Object> p = validParams(); p.put("userPrincipalName", "  "); connector.setInputParameters(p);
+            assertThatThrownBy(() -> connector.validateInputParameters()).isInstanceOf(ConnectorValidationException.class).hasMessageContaining("userPrincipalName");
+        }
     }
 }

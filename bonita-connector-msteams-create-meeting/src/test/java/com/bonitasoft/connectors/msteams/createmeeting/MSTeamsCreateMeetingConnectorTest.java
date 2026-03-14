@@ -205,5 +205,71 @@ class MSTeamsCreateMeetingConnectorTest {
         void should_return_correct_connector_name() {
             assertThat(connector.getConnectorName()).isEqualTo("MSTeams-CreateMeeting");
         }
+
+        @Test
+        @DisplayName("should wrap generic exception in MSTeamsException")
+        void should_wrap_generic_exception() {
+            Map<String, Object> params = new HashMap<>();
+            params.put("tenantId", "test-tenant");
+            params.put("clientId", "test-client-id");
+            params.put("clientSecret", "test-secret");
+            params.put("userId", "user-123");
+            params.put("subject", "Team Standup");
+            params.put("startDateTime", "2024-01-15T10:00:00Z");
+            params.put("endDateTime", "2024-01-15T11:00:00Z");
+            connector.setInputParameters(params);
+
+            when(client.getObjectMapper()).thenThrow(new RuntimeException("unexpected"));
+
+            assertThatThrownBy(() -> connector.executeOperation(client))
+                    .isInstanceOf(MSTeamsException.class)
+                    .hasMessageContaining("Failed to create meeting");
+        }
+
+        @Test
+        @DisplayName("should create meeting with custom settings")
+        void should_create_meeting_with_custom_settings() throws Exception {
+            Map<String, Object> params = new HashMap<>();
+            params.put("tenantId", "test-tenant");
+            params.put("clientId", "test-client-id");
+            params.put("clientSecret", "test-secret");
+            params.put("userId", "user-123");
+            params.put("subject", "Team Standup");
+            params.put("startDateTime", "2024-01-15T10:00:00Z");
+            params.put("endDateTime", "2024-01-15T11:00:00Z");
+            params.put("allowedPresenters", "roleIsPresenter");
+            params.put("lobbyBypassScope", "everyone");
+            params.put("recordAutomatically", true);
+            connector.setInputParameters(params);
+
+            String responseJson = "{\"id\":\"m-2\",\"joinWebUrl\":\"url\",\"subject\":\"Team Standup\",\"startDateTime\":\"2024-01-15T10:00:00Z\",\"endDateTime\":\"2024-01-15T11:00:00Z\"}";
+            when(client.getObjectMapper()).thenReturn(objectMapper);
+            when(client.post(anyString(), anyString())).thenReturn(objectMapper.readTree(responseJson));
+
+            connector.executeOperation(client);
+            assertThat(connector.getOutputs().get("meetingId")).isEqualTo("m-2");
+        }
+    }
+
+    @Nested
+    @DisplayName("Validation extras")
+    class ValidationExtras {
+
+        @Test
+        @DisplayName("should fail when userId is missing")
+        void should_fail_when_userId_missing() {
+            Map<String, Object> params = new HashMap<>();
+            params.put("tenantId", "test-tenant");
+            params.put("clientId", "test-client-id");
+            params.put("clientSecret", "test-secret");
+            params.put("subject", "Team Standup");
+            params.put("startDateTime", "2024-01-15T10:00:00Z");
+            params.put("endDateTime", "2024-01-15T11:00:00Z");
+            connector.setInputParameters(params);
+
+            assertThatThrownBy(() -> connector.validateInputParameters())
+                    .isInstanceOf(ConnectorValidationException.class)
+                    .hasMessageContaining("userId");
+        }
     }
 }

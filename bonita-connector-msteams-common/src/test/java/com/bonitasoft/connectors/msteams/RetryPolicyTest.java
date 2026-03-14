@@ -140,6 +140,22 @@ class RetryPolicyTest {
         }
     }
 
+    @Nested
+    @DisplayName("sleep")
+    class Sleep {
+
+        @Test
+        void should_throw_on_interrupt() {
+            RetryPolicy policy = new RetryPolicy(1);
+            Thread.currentThread().interrupt();
+            assertThatThrownBy(() -> policy.sleep(1))
+                    .isInstanceOf(MSTeamsException.class)
+                    .hasMessageContaining("interrupted");
+            // Clear interrupted status
+            Thread.interrupted();
+        }
+    }
+
     /**
      * Test-friendly subclass that overrides sleep to avoid actual delays.
      */

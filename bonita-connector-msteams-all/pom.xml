@@ -138,17 +138,31 @@
             <version>3.5.4</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Testcontainers for Bonita Docker (E2E) -->
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>1.19.7</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>1.19.7</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Surefire: exclude integration tests -->
+            <!-- Surefire: exclude integration and e2e tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <excludedGroups>integration</excludedGroups>
+                    <excludedGroups>integration,e2e</excludedGroups>
                 </configuration>
             </plugin>
             <!-- Failsafe: run integration tests (*IT.java) -->
@@ -205,5 +219,37 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!-- E2E profile: runs end-to-end tests against real MS Teams tenant -->
+        <profile>
+            <id>e2e</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.2.5</version>
+                        <configuration>
+                            <groups>e2e</groups>
+                            <includes>
+                                <include>**/*E2E*.java</include>
+                                <include>**/*E2ETest.java</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>e2e-tests</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

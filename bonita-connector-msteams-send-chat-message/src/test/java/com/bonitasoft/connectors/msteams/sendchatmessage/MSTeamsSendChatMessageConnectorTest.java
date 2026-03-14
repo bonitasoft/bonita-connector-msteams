@@ -125,6 +125,74 @@ class MSTeamsSendChatMessageConnectorTest {
             when(mockClient.post(anyString(), anyString())).thenThrow(new MSTeamsException("error"));
             assertThatThrownBy(() -> connector.executeOperation(mockClient)).isInstanceOf(MSTeamsException.class);
         }
+
+        @Test
+        @DisplayName("should_wrap_generic_exception_in_msteams_exception")
+        void should_wrap_generic_exception() {
+            connector.setInputParameters(validParams());
+            connector.setClient(mockClient);
+            when(mockClient.getObjectMapper()).thenThrow(new RuntimeException("unexpected"));
+            assertThatThrownBy(() -> connector.executeOperation(mockClient))
+                    .isInstanceOf(MSTeamsException.class)
+                    .hasMessageContaining("Failed to send chat message");
+        }
+
+        @Test
+        @DisplayName("should_execute_with_html_content_type_and_urgent_importance")
+        void should_execute_with_custom_content_type_and_importance() throws Exception {
+            Map<String, Object> params = validParams();
+            params.put("contentType", "html");
+            params.put("importance", "urgent");
+            connector.setInputParameters(params);
+            connector.setClient(mockClient);
+
+            ObjectMapper mapper = new ObjectMapper();
+            when(mockClient.getObjectMapper()).thenReturn(mapper);
+            when(mockClient.post(anyString(), anyString()))
+                    .thenReturn(mapper.readTree("{\"id\":\"msg-2\",\"createdDateTime\":\"2026-03-13T11:00:00Z\"}"));
+
+            connector.executeOperation(mockClient);
+            verify(mockClient).post(anyString(), org.mockito.ArgumentMatchers.contains("\"contentType\":\"html\""));
+            verify(mockClient).post(anyString(), org.mockito.ArgumentMatchers.contains("\"importance\":\"urgent\""));
+        }
+    }
+
+    @Nested
+    @DisplayName("Validation extras")
+    class ValidationExtras {
+
+        @Test
+        @DisplayName("should_fail_when_chatId_is_blank")
+        void should_fail_when_chatId_is_blank() {
+            Map<String, Object> params = validParams();
+            params.put("chatId", "  ");
+            connector.setInputParameters(params);
+            assertThatThrownBy(() -> connector.validateInputParameters())
+                    .isInstanceOf(ConnectorValidationException.class)
+                    .hasMessageContaining("chatId");
+        }
+
+        @Test
+        @DisplayName("should_fail_when_messageContent_is_blank")
+        void should_fail_when_messageContent_is_blank() {
+            Map<String, Object> params = validParams();
+            params.put("messageContent", "  ");
+            connector.setInputParameters(params);
+            assertThatThrownBy(() -> connector.validateInputParameters())
+                    .isInstanceOf(ConnectorValidationException.class)
+                    .hasMessageContaining("messageContent");
+        }
+
+        @Test
+        @DisplayName("should_fail_when_messageContent_exceeds_max_length")
+        void should_fail_when_messageContent_exceeds_max_length() {
+            Map<String, Object> params = validParams();
+            params.put("messageContent", "x".repeat(28_001));
+            connector.setInputParameters(params);
+            assertThatThrownBy(() -> connector.validateInputParameters())
+                    .isInstanceOf(ConnectorValidationException.class)
+                    .hasMessageContaining("exceeds maximum length");
+        }
     }
 
     @Nested
