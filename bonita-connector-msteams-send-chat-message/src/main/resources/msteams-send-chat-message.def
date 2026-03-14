@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition:ConnectorDefinition xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <id>msteams-send-chat-message</id>
+    <version>1.0.0</version>
+    <icon>msteams.png</icon>
+
+    <category icon="msteams.png" id="msteams"/>
+
+    <!-- ======================== -->
+    <!-- INPUT PARAMETERS         -->
+    <!-- ======================== -->
+
+    <!-- Auth / Connection -->
+    <input name="tenantId" type="java.lang.String" mandatory="true"/>
+    <input name="clientId" type="java.lang.String" mandatory="true"/>
+    <input name="clientSecret" type="java.lang.String" mandatory="true"/>
+    <input name="authMode" type="java.lang.String" mandatory="false"/>
+    <input name="refreshToken" type="java.lang.String" mandatory="false"/>
+    <input name="userId" type="java.lang.String" mandatory="false"/>
+    <input name="connectTimeout" type="java.lang.Integer" mandatory="false"/>
+    <input name="readTimeout" type="java.lang.Integer" mandatory="false"/>
+
+    <!-- Operation Parameters -->
+    <input name="chatId" type="java.lang.String" mandatory="true"/>
+    <input name="messageContent" type="java.lang.String" mandatory="true"/>
+    <input name="contentType" type="java.lang.String" mandatory="false"/>
+    <input name="importance" type="java.lang.String" mandatory="false"/>
+
+    <!-- ======================== -->
+    <!-- OUTPUT PARAMETERS        -->
+    <!-- ======================== -->
+    <output name="success" type="java.lang.Boolean"/>
+    <output name="errorMessage" type="java.lang.String"/>
+    <output name="messageId" type="java.lang.String"/>
+    <output name="chatId" type="java.lang.String"/>
+    <output name="createdDateTime" type="java.lang.String"/>
+
+    <!-- ======================== -->
+    <!-- UI PAGES                 -->
+    <!-- ======================== -->
+
+    <!-- Page 1: Authentication -->
+    <page id="connectionPage">
+        <widget xsi:type="definition:Text" id="tenantIdWidget" inputName="tenantId"/>
+        <widget xsi:type="definition:Text" id="clientIdWidget" inputName="clientId"/>
+        <widget xsi:type="definition:Password" id="clientSecretWidget" inputName="clientSecret"/>
+        <widget xsi:type="definition:Select" id="authModeWidget" inputName="authMode"/>
+        <widget xsi:type="definition:Password" id="refreshTokenWidget" inputName="refreshToken"/>
+        <widget xsi:type="definition:Text" id="userIdWidget" inputName="userId"/>
+        <widget xsi:type="definition:Text" id="connectTimeoutWidget" inputName="connectTimeout"/>
+        <widget xsi:type="definition:Text" id="readTimeoutWidget" inputName="readTimeout"/>
+    </page>
+
+    <!-- Page 2: Message Configuration -->
+    <page id="operationPage">
+        <widget xsi:type="definition:Text" id="chatIdWidget" inputName="chatId"/>
+        <widget xsi:type="definition:TextArea" id="messageContentWidget" inputName="messageContent"/>
+        <widget xsi:type="definition:Select" id="contentTypeWidget" inputName="contentType"/>
+        <widget xsi:type="definition:Select" id="importanceWidget" inputName="importance"/>
+    </page>
+</definition:ConnectorDefinition>

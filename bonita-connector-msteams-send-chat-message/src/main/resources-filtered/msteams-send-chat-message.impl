@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<implementation:connectorImplementation xmlns:implementation="http://www.bonitasoft.org/ns/connector/implementation/6.0">
+  <implementationId>msteams-send-chat-message-impl</implementationId>
+  <implementationVersion>${project.version}</implementationVersion>
+  <definitionId>msteams-send-chat-message</definitionId>
+  <definitionVersion>1.0.0</definitionVersion>
+  <implementationClassname>com.bonitasoft.connectors.msteams.sendchatmessage.MSTeamsSendChatMessageConnector</implementationClassname>
+  <hasSources>false</hasSources>
+  <description>MS Teams Send Chat Message connector implementation.</description>
+
+<!-- retrieved from the pom.xml at build time -->
+${connector-dependencies}
+
+</implementation:connectorImplementation>

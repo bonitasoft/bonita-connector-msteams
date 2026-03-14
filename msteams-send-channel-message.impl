@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<implementation:connectorImplementation xmlns:implementation="http://www.bonitasoft.org/ns/connector/implementation/6.0">
+  <implementationId>msteams-send-channel-message-impl</implementationId>
+  <implementationVersion>1.0.0</implementationVersion>
+  <definitionId>msteams-send-channel-message</definitionId>
+  <definitionVersion>1.0.0</definitionVersion>
+  <implementationClassname>com.bonitasoft.connectors.msteams.sendchannelmessage.MSTeamsSendChannelMessageConnector</implementationClassname>
+  <hasSources>false</hasSources>
+  <description>MS Teams Send Channel Message connector implementation.</description>
+
+<!-- retrieved from the pom.xml at build time -->
+<jarDependencies>
+  <jarDependency>bonita-connector-msteams-send-channel-message-1.0.0.jar</jarDependency>
+  <jarDependency>bonita-connector-msteams-common-1.0.0.jar</jarDependency>
+  <jarDependency>jackson-annotations-2.17.1.jar</jarDependency>
+  <jarDependency>jackson-core-2.17.2.jar</jarDependency>
+  <jarDependency>jackson-databind-2.17.2.jar</jarDependency>
+</jarDependencies>
+
+</implementation:connectorImplementation>

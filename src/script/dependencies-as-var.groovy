@@ -8,11 +8,8 @@ builder.jarDependencies {
             .findAll { artifact -> artifact.scope == "compile" || artifact.scope == "runtime" }
             .sort { artifact -> artifact.artifactId }
             .each { artifact ->
-                jarDependency(artifact.classifier ?
-                    "${artifact.artifactId}-${artifact.version}-${artifact.classifier}.${artifact.type}"
-                    : "${artifact.artifactId}-${artifact.version}.${artifact.type}")
+                jarDependency("${artifact.artifactId}-${artifact.version}.${artifact.type}")
             }
 }
-
 def deps = xml.toString()
 project.properties.setProperty("connector-dependencies", deps)

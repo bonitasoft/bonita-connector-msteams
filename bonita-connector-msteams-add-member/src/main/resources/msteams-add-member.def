@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition:ConnectorDefinition xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <id>msteams-add-member</id>
+    <version>1.0.0</version>
+    <icon>msteams.png</icon>
+
+    <category icon="msteams.png" id="msteams"/>
+
+    <input name="tenantId" type="java.lang.String" mandatory="true"/>
+    <input name="clientId" type="java.lang.String" mandatory="true"/>
+    <input name="clientSecret" type="java.lang.String" mandatory="true"/>
+    <input name="connectTimeout" type="java.lang.Integer" mandatory="false"/>
+    <input name="readTimeout" type="java.lang.Integer" mandatory="false"/>
+
+    <input name="teamId" type="java.lang.String" mandatory="true"/>
+    <input name="userPrincipalName" type="java.lang.String" mandatory="true"/>
+    <input name="role" type="java.lang.String" mandatory="false"/>
+
+    <output name="success" type="java.lang.Boolean"/>
+    <output name="errorMessage" type="java.lang.String"/>
+    <output name="membershipId" type="java.lang.String"/>
+    <output name="displayName" type="java.lang.String"/>
+
+    <page id="connectionPage">
+        <widget xsi:type="definition:Text" id="tenantIdWidget" inputName="tenantId"/>
+        <widget xsi:type="definition:Text" id="clientIdWidget" inputName="clientId"/>
+        <widget xsi:type="definition:Password" id="clientSecretWidget" inputName="clientSecret"/>
+        <widget xsi:type="definition:Text" id="connectTimeoutWidget" inputName="connectTimeout"/>
+        <widget xsi:type="definition:Text" id="readTimeoutWidget" inputName="readTimeout"/>
+    </page>
+
+    <page id="operationPage">
+        <widget xsi:type="definition:Text" id="teamIdWidget" inputName="teamId"/>
+        <widget xsi:type="definition:Text" id="userPrincipalNameWidget" inputName="userPrincipalName"/>
+        <widget xsi:type="definition:Text" id="roleWidget" inputName="role"/>
+    </page>
+</definition:ConnectorDefinition>
