@@ -57,6 +57,10 @@ Process variables hold common authentication parameters and operation-specific i
       <!-- Files -->
       <bonita:data name="fileName" type="java.lang.String"/>
       <bonita:data name="fileContent" type="java.lang.String"/>
+
+      <!-- Connector outputs (shared across all tasks) -->
+      <bonita:data name="success" type="java.lang.Boolean"/>
+      <bonita:data name="errorMessage" type="java.lang.String"/>
     </extensionElements>
 
     <!-- ============================================ -->

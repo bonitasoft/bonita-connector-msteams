@@ -29,10 +29,15 @@ public class MSTeamsClient implements AutoCloseable {
     private String accessToken;
 
     public MSTeamsClient(MSTeamsConfiguration configuration) {
-        this.configuration = configuration;
-        this.httpClient = HttpClient.newBuilder()
+        this(configuration, HttpClient.newBuilder()
                 .connectTimeout(Duration.ofMillis(configuration.connectTimeout()))
-                .build();
+                .build());
+    }
+
+    /** Package-private constructor for testing with a mock HttpClient. */
+    MSTeamsClient(MSTeamsConfiguration configuration, HttpClient httpClient) {
+        this.configuration = configuration;
+        this.httpClient = httpClient;
     }
 
     public void authenticate() {
@@ -171,7 +176,8 @@ public class MSTeamsClient implements AutoCloseable {
         return capped + ThreadLocalRandom.current().nextLong((long) (capped * JITTER_FACTOR));
     }
 
-    private void doSleep(long ms) {
+    /** Package-private for test override to avoid real sleeps. */
+    void doSleep(long ms) {
         try { Thread.sleep(ms); }
         catch (InterruptedException e) { Thread.currentThread().interrupt(); throw new MSTeamsException("Interrupted", e); }
     }

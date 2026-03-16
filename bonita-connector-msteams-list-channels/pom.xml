@@ -10,7 +10,7 @@
     </parent>
     <artifactId>bonita-connector-msteams-list-channels</artifactId>
     <packaging>jar</packaging>
-    <name>Bonita MS Teams Connector - ListChannels</name>
+    <name>MS Teams - List Channels</name>
     <description>List channels in a Microsoft Teams team</description>
     <properties>
         <connector.id>msteams-list-channels</connector.id>

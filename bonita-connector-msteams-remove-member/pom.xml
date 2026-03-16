@@ -10,7 +10,7 @@
     </parent>
     <artifactId>bonita-connector-msteams-remove-member</artifactId>
     <packaging>jar</packaging>
-    <name>Bonita MS Teams Connector - RemoveMember</name>
+    <name>MS Teams - Remove Member</name>
     <description>Remove a member from a Microsoft Teams team</description>
     <properties>
         <connector.id>msteams-remove-member</connector.id>

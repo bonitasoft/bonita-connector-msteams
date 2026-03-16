@@ -13,7 +13,7 @@
     <artifactId>bonita-connector-msteams-all</artifactId>
     <packaging>jar</packaging>
 
-    <name>Bonita MS Teams Connector - All Operations</name>
+    <name>MS Teams</name>
     <description>Single JAR containing all 14 MS Teams connector operations</description>
 
     <dependencies>
@@ -151,6 +151,20 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Bonita Test Toolkit (BTT) -->
+        <dependency>
+            <groupId>com.bonitasoft</groupId>
+            <artifactId>bonita-test-toolkit</artifactId>
+            <version>3.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>4.2.0</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Testcontainers for Bonita Docker (E2E) -->
         <dependency>
             <groupId>org.testcontainers</groupId>
@@ -233,6 +247,45 @@
     </build>
 
     <profiles>
+        <!-- BTT profile: runs Bonita Test Toolkit tests against Docker runtime -->
+        <profile>
+            <id>btt</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>3.2.5</version>
+                        <configuration>
+                            <groups>btt</groups>
+                            <includes>
+                                <include>**/*IT.java</include>
+                            </includes>
+                            <systemPropertyVariables>
+                                <bonita.url>${bonita.url}</bonita.url>
+                                <bonita.tech.user>${bonita.tech.user}</bonita.tech.user>
+                                <bonita.tech.password>${bonita.tech.password}</bonita.tech.password>
+                            </systemPropertyVariables>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>btt-tests</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <properties>
+                <bonita.url>http://localhost:8080/bonita</bonita.url>
+                <bonita.tech.user>install</bonita.tech.user>
+                <bonita.tech.password>install</bonita.tech.password>
+            </properties>
+        </profile>
+
         <!-- E2E profile: runs end-to-end tests against real MS Teams tenant -->
         <profile>
             <id>e2e</id>

@@ -10,7 +10,7 @@
     </parent>
     <artifactId>bonita-connector-msteams-get-team</artifactId>
     <packaging>jar</packaging>
-    <name>Bonita MS Teams Connector - GetTeam</name>
+    <name>MS Teams - Get Team</name>
     <description>Get details of a Microsoft Teams team</description>
     <properties>
         <connector.id>msteams-get-team</connector.id>

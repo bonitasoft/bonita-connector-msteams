@@ -13,7 +13,7 @@
     <artifactId>bonita-connector-msteams-reply-message</artifactId>
     <packaging>jar</packaging>
 
-    <name>Bonita MS Teams Connector - Reply Message</name>
+    <name>MS Teams - Reply Message</name>
     <description>Reply to a message in a Microsoft Teams channel</description>
 
     <properties>

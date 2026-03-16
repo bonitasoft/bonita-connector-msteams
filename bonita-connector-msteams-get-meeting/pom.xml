@@ -13,7 +13,7 @@
     <artifactId>bonita-connector-msteams-get-meeting</artifactId>
     <packaging>jar</packaging>
 
-    <name>Bonita MS Teams Connector - Get Meeting</name>
+    <name>MS Teams - Get Meeting</name>
     <description>Retrieve online meeting details from Microsoft Teams</description>
 
     <properties>

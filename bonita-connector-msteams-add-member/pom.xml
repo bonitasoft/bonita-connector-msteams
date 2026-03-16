@@ -10,7 +10,7 @@
     </parent>
     <artifactId>bonita-connector-msteams-add-member</artifactId>
     <packaging>jar</packaging>
-    <name>Bonita MS Teams Connector - AddMember</name>
+    <name>MS Teams - Add Member</name>
     <description>Add a member to a Microsoft Teams team</description>
     <properties>
         <connector.id>msteams-add-member</connector.id>

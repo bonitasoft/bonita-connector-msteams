@@ -13,7 +13,7 @@
     <artifactId>bonita-connector-msteams-common</artifactId>
     <packaging>jar</packaging>
 
-    <name>Bonita MS Teams Connector - Common</name>
+    <name>MS Teams - Common</name>
     <description>Shared components for MS Teams connectors: client, configuration, exceptions</description>
 
     <dependencies>

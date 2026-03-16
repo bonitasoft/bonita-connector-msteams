@@ -13,7 +13,7 @@
     <artifactId>bonita-connector-msteams-upload-file</artifactId>
     <packaging>jar</packaging>
 
-    <name>Bonita MS Teams Connector - Upload File</name>
+    <name>MS Teams - Upload File</name>
     <description>Upload files to a Microsoft Teams channel</description>
 
     <properties>

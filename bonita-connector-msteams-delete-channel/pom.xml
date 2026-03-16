@@ -10,7 +10,7 @@
     </parent>
     <artifactId>bonita-connector-msteams-delete-channel</artifactId>
     <packaging>jar</packaging>
-    <name>Bonita MS Teams Connector - DeleteChannel</name>
+    <name>MS Teams - Delete Channel</name>
     <description>Delete a channel from a Microsoft Teams team</description>
     <properties>
         <connector.id>msteams-delete-channel</connector.id>

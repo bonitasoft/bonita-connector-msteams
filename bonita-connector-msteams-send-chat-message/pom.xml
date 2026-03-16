@@ -13,7 +13,7 @@
     <artifactId>bonita-connector-msteams-send-chat-message</artifactId>
     <packaging>jar</packaging>
 
-    <name>Bonita MS Teams Connector - Send Chat Message</name>
+    <name>MS Teams - Send Chat Message</name>
     <description>Send a message to a Microsoft Teams chat</description>
 
     <properties>

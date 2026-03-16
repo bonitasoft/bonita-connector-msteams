@@ -36,7 +36,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Integration test simulating the full MSTeamsConnectorTestProcess.proc flow.
+ * Integration test simulating the full MSTeamsConnectorTestProcess.bpmn flow.
  * <p>
  * Executes all 14 connectors in the same sequence as the .proc diagram:
  * Start → SendChannelMessage → SendChatMessage → ReplyMessage → SendAdaptiveCard →
@@ -50,7 +50,7 @@ import static org.mockito.Mockito.*;
  */
 @Tag("integration")
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Process Flow Simulation - MSTeamsConnectorTestProcess.proc")
+@DisplayName("Process Flow Simulation - MSTeamsConnectorTestProcess.bpmn")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class MSTeamsProcessFlowIT {
 
@@ -473,9 +473,9 @@ class MSTeamsProcessFlowIT {
     @DisplayName("should_verify_proc_file_is_parseable")
     void should_verify_proc_file_is_parseable() throws Exception {
         var procStream = getClass().getClassLoader()
-                .getResourceAsStream("MSTeamsConnectorTestProcess.proc");
+                .getResourceAsStream("MSTeamsConnectorTestProcess.bpmn");
         assertThat(procStream)
-                .as("MSTeamsConnectorTestProcess.proc should be on classpath")
+                .as("MSTeamsConnectorTestProcess.bpmn should be on classpath")
                 .isNotNull();
 
         // Verify it's valid XML

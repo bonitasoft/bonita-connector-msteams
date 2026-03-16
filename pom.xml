@@ -9,7 +9,7 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>Bonita MS Teams Connector</name>
+    <name>MS Teams Connector</name>
     <description>Multi-module Bonita BPM connector for Microsoft Teams integration</description>
 
     <modules>

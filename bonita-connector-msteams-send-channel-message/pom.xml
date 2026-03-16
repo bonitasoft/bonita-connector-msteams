@@ -13,7 +13,7 @@
     <artifactId>bonita-connector-msteams-send-channel-message</artifactId>
     <packaging>jar</packaging>
 
-    <name>Bonita MS Teams Connector - Send Channel Message</name>
+    <name>MS Teams - Send Channel Message</name>
     <description>Send a message to a Microsoft Teams channel</description>
 
     <properties>

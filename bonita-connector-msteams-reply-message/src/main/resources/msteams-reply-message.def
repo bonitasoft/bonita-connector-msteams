@@ -46,7 +46,7 @@
         <widget xsi:type="definition:Text" id="tenantIdWidget" inputName="tenantId"/>
         <widget xsi:type="definition:Text" id="clientIdWidget" inputName="clientId"/>
         <widget xsi:type="definition:Password" id="clientSecretWidget" inputName="clientSecret"/>
-        <widget xsi:type="definition:Select" id="authModeWidget" inputName="authMode"/>
+        <widget xsi:type="definition:Text" id="authModeWidget" inputName="authMode"/>
         <widget xsi:type="definition:Password" id="refreshTokenWidget" inputName="refreshToken"/>
         <widget xsi:type="definition:Text" id="userIdWidget" inputName="userId"/>
         <widget xsi:type="definition:Text" id="connectTimeoutWidget" inputName="connectTimeout"/>
@@ -59,6 +59,6 @@
         <widget xsi:type="definition:Text" id="channelIdWidget" inputName="channelId"/>
         <widget xsi:type="definition:Text" id="parentMessageIdWidget" inputName="parentMessageId"/>
         <widget xsi:type="definition:TextArea" id="messageContentWidget" inputName="messageContent"/>
-        <widget xsi:type="definition:Select" id="contentTypeWidget" inputName="contentType"/>
+        <widget xsi:type="definition:Text" id="contentTypeWidget" inputName="contentType"/>
     </page>
 </definition:ConnectorDefinition>

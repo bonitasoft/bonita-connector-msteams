@@ -10,7 +10,7 @@
     </parent>
     <artifactId>bonita-connector-msteams-list-teams</artifactId>
     <packaging>jar</packaging>
-    <name>Bonita MS Teams Connector - ListTeams</name>
+    <name>MS Teams - List Teams</name>
     <description>List Microsoft Teams teams</description>
     <properties>
         <connector.id>msteams-list-teams</connector.id>

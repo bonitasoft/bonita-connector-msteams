@@ -13,7 +13,7 @@
     <artifactId>bonita-connector-msteams-create-meeting</artifactId>
     <packaging>jar</packaging>
 
-    <name>Bonita MS Teams Connector - Create Meeting</name>
+    <name>MS Teams - Create Meeting</name>
     <description>Create online meetings in Microsoft Teams</description>
 
     <properties>

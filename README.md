@@ -708,6 +708,127 @@ mvn verify -Pe2e -pl bonita-connector-msteams-all
 
 ---
 
+## Testing Guide
+
+### Test Levels
+
+| Level | Command | What it tests | External dependencies |
+|-------|---------|---------------|----------------------|
+| **Unit** | `mvn test` | Connector logic with mocks | None |
+| **Integration** | `mvn verify` | Process flow simulation, JAR validation, performance | None |
+| **BTT** | `mvn verify -Pbtt` | Full process in Bonita runtime | Docker (Testcontainers) |
+| **E2E** | `mvn verify -Pe2e -pl bonita-connector-msteams-all` | Real MS Teams API calls | MS Teams credentials |
+
+### How to Obtain MS Teams Test Data
+
+After setting up Azure AD (Steps 1-5 above), you need test IDs from your MS Teams environment.
+
+#### Get Team ID and Channel ID
+
+**Option A: Microsoft Graph Explorer (recommended)**
+
+1. Go to [Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer)
+2. Sign in with your Microsoft 365 account
+3. Run: `GET https://graph.microsoft.com/v1.0/me/joinedTeams`
+4. Copy the `id` field of your test team -- this is your `teamId`
+5. Run: `GET https://graph.microsoft.com/v1.0/teams/{teamId}/channels`
+6. Copy the `id` of the "General" channel -- this is your `channelId`
+
+**Option B: Teams App**
+
+1. Open Microsoft Teams
+2. Right-click on the team name > **Get link to team**
+3. The URL contains the team ID: `groupId=<teamId>`
+4. Right-click on a channel > **Get link to channel**
+5. The URL contains the channel ID (URL-encoded)
+
+#### Get Chat ID
+
+1. Graph Explorer: `GET https://graph.microsoft.com/v1.0/me/chats`
+2. Copy the `id` of an existing chat thread
+
+#### Get User ID
+
+1. Azure Portal > **Azure Active Directory** > **Users** > select a user
+2. Copy the **Object ID** -- this is your `userId`
+
+#### Get User Principal Name
+
+This is the user's email address (e.g., `john.doe@contoso.com`). Used for Add/Remove Member operations.
+
+### Running E2E Tests
+
+Set environment variables and run:
+
+```bash
+# Required: Azure AD credentials
+export MSTEAMS_TENANT_ID="your-tenant-id"
+export MSTEAMS_CLIENT_ID="your-client-id"
+export MSTEAMS_CLIENT_SECRET="your-client-secret"
+
+# Required: Test data IDs
+export MSTEAMS_TEAM_ID="your-team-id"
+export MSTEAMS_CHANNEL_ID="your-channel-id"
+export MSTEAMS_USER_ID="your-user-object-id"
+export MSTEAMS_CHAT_ID="your-chat-id"
+export MSTEAMS_USER_PRINCIPAL_NAME="user@contoso.com"
+
+# Run E2E tests
+mvn verify -Pe2e -pl bonita-connector-msteams-all -am
+```
+
+The E2E tests execute all 14 connectors in sequence against your real MS Teams tenant:
+1. Send a channel message
+2. Send a chat message
+3. Reply to the channel message
+4. Send an Adaptive Card
+5. Create a new channel
+6. List channels
+7. Delete the created channel
+8. List teams
+9. Get team details
+10. Add a member to the team
+11. Remove the member
+12. Create an online meeting
+13. Get meeting details
+14. Upload a file to the channel
+
+> **Warning**: These tests create real resources in your MS Teams environment (messages, channels, meetings). Use a dedicated test team.
+
+### Running BTT Tests (Bonita Runtime)
+
+Requires Docker for Testcontainers:
+
+```bash
+# Ensure Docker Desktop is running, then:
+mvn verify -Pbtt -pl bonita-connector-msteams-all -am
+```
+
+BTT tests automatically:
+1. Start a `bonita:2025.2` container via Testcontainers
+2. Generate a `.bar` file programmatically
+3. Deploy the process via REST API
+4. Execute and verify the process
+
+### CI/CD Integration
+
+For CI pipelines, pass credentials as secrets:
+
+```yaml
+# GitHub Actions example
+env:
+  MSTEAMS_TENANT_ID: ${{ secrets.MSTEAMS_TENANT_ID }}
+  MSTEAMS_CLIENT_ID: ${{ secrets.MSTEAMS_CLIENT_ID }}
+  MSTEAMS_CLIENT_SECRET: ${{ secrets.MSTEAMS_CLIENT_SECRET }}
+  MSTEAMS_TEAM_ID: ${{ secrets.MSTEAMS_TEAM_ID }}
+  MSTEAMS_CHANNEL_ID: ${{ secrets.MSTEAMS_CHANNEL_ID }}
+  MSTEAMS_USER_ID: ${{ secrets.MSTEAMS_USER_ID }}
+  MSTEAMS_CHAT_ID: ${{ secrets.MSTEAMS_CHAT_ID }}
+  MSTEAMS_USER_PRINCIPAL_NAME: ${{ secrets.MSTEAMS_USER_PRINCIPAL_NAME }}
+```
+
+---
+
 ## License
 
 Copyright (C) 2025 BonitaSoft S.A. -- GPLv2

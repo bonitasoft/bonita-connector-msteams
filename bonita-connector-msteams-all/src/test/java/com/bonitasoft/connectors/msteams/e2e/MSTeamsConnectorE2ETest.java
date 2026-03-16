@@ -370,7 +370,7 @@ class MSTeamsConnectorE2ETest {
     @DisplayName("should_verify_proc_file_exists_in_test_resources")
     void should_verify_proc_file_exists_in_test_resources() {
         var procStream = getClass().getClassLoader()
-                .getResourceAsStream("MSTeamsConnectorTestProcess.proc");
+                .getResourceAsStream("MSTeamsConnectorTestProcess.bpmn");
         assertThat(procStream)
                 .as("The .proc test process file should be on the classpath")
                 .isNotNull();

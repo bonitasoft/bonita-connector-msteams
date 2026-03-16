@@ -13,7 +13,7 @@
     <artifactId>bonita-connector-msteams-send-adaptive-card</artifactId>
     <packaging>jar</packaging>
 
-    <name>Bonita MS Teams Connector - Send Adaptive Card</name>
+    <name>MS Teams - Send Adaptive Card</name>
     <description>Send an Adaptive Card to a Microsoft Teams channel</description>
 
     <properties>

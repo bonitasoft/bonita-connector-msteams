@@ -1,0 +1,1457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:actormapping="http://www.bonitasoft.org/ns/actormapping/6.0" xmlns:configuration="http://www.bonitasoft.org/ns/bpm/configuration" xmlns:connectorconfiguration="http://www.bonitasoft.org/model/connector/configuration" xmlns:decision="http://www.bonitasoft.org/ns/bpm/process/decision" xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1" xmlns:expression="http://www.bonitasoft.org/ns/bpm/expression" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:process="http://www.bonitasoft.org/ns/bpm/process">
+  <process:MainProcess xmi:id="_mt000001" name="MSTeamsConnectorTestProcess" bonitaModelVersion="9">
+    <elements xmi:type="process:Pool" xmi:id="_mt000002" name="MSTeamsConnectorTestProcess">
+      <elements xmi:type="process:Lane" xmi:id="_mt000003" name="System" actor="_mt000020">
+        <elements xmi:type="process:StartEvent" xmi:id="_mt000004" name="Start" outgoing="_mt100001">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt000007" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt000008" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt000009" name="" content="" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100100" name="Send Channel Message" outgoing="_mt100002" incoming="_mt100001">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100101" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100102" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100103" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200000" name="Send Channel Message" definitionId="msteams-send-channel-message" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300036" definitionId="msteams-send-channel-message" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300001" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300002" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300003" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300004" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300005" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300006" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300007" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300008" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300009" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300010" key="authMode">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300011" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300012" key="refreshToken">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300013" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300014" key="userId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300015" name="userId" content="userId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300016" name="userId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300017" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300018" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300019" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300020" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300021" key="teamId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300022" name="teamId" content="teamId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300023" name="teamId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300024" key="channelId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300025" name="channelId" content="channelId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300026" name="channelId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300027" key="messageContent">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300028" name="messageContent" content="messageContent" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300029" name="messageContent" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300030" key="contentType">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300031" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300032" key="subject">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300033" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300034" key="importance">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300035" content="" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200020">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200021" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200022" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200023" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200024" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200025" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200026">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200027" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200028" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200029" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200030" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200031" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200032">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200033" name="parentMessageId" content="parentMessageId" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200034" name="parentMessageId" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200035" name="messageId" content="messageId" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200036" name="messageId" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200037" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400001" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400002" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400003" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400004" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400005" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100110" name="Send Chat Message" outgoing="_mt100003" incoming="_mt100002">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100111" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100112" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100113" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200038" name="Send Chat Message" definitionId="msteams-send-chat-message" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300067" definitionId="msteams-send-chat-message" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300037" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300038" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300039" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300040" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300041" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300042" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300043" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300044" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300045" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300046" key="authMode">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300047" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300048" key="refreshToken">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300049" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300050" key="userId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300051" name="userId" content="userId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300052" name="userId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300053" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300054" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300055" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300056" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300057" key="chatId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300058" name="chatId" content="chatId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300059" name="chatId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300060" key="messageContent">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300061" name="messageContent" content="messageContent" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300062" name="messageContent" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300063" key="contentType">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300064" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300065" key="importance">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300066" content="" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200055">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200056" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200057" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200058" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200059" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200060" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200061">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200062" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200063" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200064" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200065" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200066" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400006" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400007" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400008" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400009" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400010" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100120" name="Reply Message" outgoing="_mt100004" incoming="_mt100003">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100121" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100122" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100123" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200067" name="Reply Message" definitionId="msteams-reply-message" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300102" definitionId="msteams-reply-message" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300068" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300069" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300070" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300071" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300072" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300073" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300074" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300075" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300076" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300077" key="authMode">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300078" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300079" key="refreshToken">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300080" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300081" key="userId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300082" name="userId" content="userId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300083" name="userId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300084" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300085" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300086" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300087" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300088" key="teamId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300089" name="teamId" content="teamId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300090" name="teamId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300091" key="channelId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300092" name="channelId" content="channelId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300093" name="channelId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300094" key="parentMessageId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300095" name="parentMessageId" content="parentMessageId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300096" name="parentMessageId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300097" key="messageContent">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300098" name="messageContent" content="messageContent" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300099" name="messageContent" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300100" key="contentType">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300101" content="" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200090">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200091" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200092" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200093" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200094" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200095" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200096">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200097" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200098" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200099" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200100" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200101" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400011" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400012" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400013" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400014" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400015" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100130" name="Send Adaptive Card" outgoing="_mt100005" incoming="_mt100004">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100131" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100132" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100133" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200102" name="Send Adaptive Card" definitionId="msteams-send-adaptive-card" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300136" definitionId="msteams-send-adaptive-card" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300103" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300104" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300105" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300106" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300107" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300108" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300109" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300110" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300111" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300112" key="authMode">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300113" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300114" key="refreshToken">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300115" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300116" key="userId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300117" name="userId" content="userId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300118" name="userId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300119" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300120" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300121" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300122" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300123" key="teamId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300124" name="teamId" content="teamId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300125" name="teamId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300126" key="channelId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300127" name="channelId" content="channelId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300128" name="channelId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300129" key="cardJson">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300130" name="cardJson" content="cardJson" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300131" name="cardJson" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300132" key="subject">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300133" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300134" key="importance">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300135" content="" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200122">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200123" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200124" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200125" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200126" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200127" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200128">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200129" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200130" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200131" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200132" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200133" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400016" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400017" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400018" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400019" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400020" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100140" name="Create Channel" outgoing="_mt100006" incoming="_mt100005">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100141" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100142" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100143" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200134" name="Create Channel" definitionId="msteams-create-channel" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300161" definitionId="msteams-create-channel" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300137" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300138" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300139" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300140" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300141" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300142" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300143" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300144" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300145" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300146" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300147" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300148" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300149" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300150" key="teamId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300151" name="teamId" content="teamId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300152" name="teamId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300153" key="displayName">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300154" name="channelDisplayName" content="channelDisplayName" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300155" name="channelDisplayName" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300156" key="description">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300157" name="channelDescription" content="channelDescription" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300158" name="channelDescription" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300159" key="membershipType">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300160" content="" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200154">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200155" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200156" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200157" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200158" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200159" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200160">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200161" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200162" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200163" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200164" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200165" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200166">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200167" name="createdChannelId" content="createdChannelId" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200168" name="createdChannelId" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200169" name="channelId" content="channelId" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200170" name="channelId" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200171" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400021" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400022" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400023" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400024" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400025" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100150" name="List Channels" outgoing="_mt100007" incoming="_mt100006">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100151" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100152" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100153" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200172" name="List Channels" definitionId="msteams-list-channels" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300178" definitionId="msteams-list-channels" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300162" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300163" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300164" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300165" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300166" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300167" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300168" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300169" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300170" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300171" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300172" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300173" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300174" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300175" key="teamId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300176" name="teamId" content="teamId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300177" name="teamId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200186">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200187" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200188" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200189" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200190" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200191" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200192">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200193" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200194" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200195" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200196" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200197" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400026" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400027" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400028" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400029" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400030" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100160" name="Delete Channel" outgoing="_mt100008" incoming="_mt100007">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100161" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100162" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100163" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200198" name="Delete Channel" definitionId="msteams-delete-channel" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300198" definitionId="msteams-delete-channel" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300179" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300180" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300181" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300182" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300183" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300184" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300185" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300186" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300187" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300188" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300189" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300190" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300191" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300192" key="teamId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300193" name="teamId" content="teamId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300194" name="teamId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300195" key="channelId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300196" name="createdChannelId" content="createdChannelId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300197" name="createdChannelId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200215">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200216" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200217" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200218" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200219" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200220" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200221">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200222" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200223" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200224" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200225" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200226" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400031" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400032" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400033" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400034" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400035" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100170" name="List Teams" outgoing="_mt100009" incoming="_mt100008">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100171" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100172" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100173" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200227" name="List Teams" definitionId="msteams-list-teams" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300218" definitionId="msteams-list-teams" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300199" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300200" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300201" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300202" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300203" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300204" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300205" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300206" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300207" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300208" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300209" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300210" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300211" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300212" key="appOnly">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300213" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300214" key="filter">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300215" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300216" key="maxResults">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300217" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200238">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200239" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200240" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200241" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200242" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200243" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200244">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200245" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200246" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200247" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200248" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200249" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400036" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400037" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400038" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400039" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400040" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100180" name="Get Team" outgoing="_mt100010" incoming="_mt100009">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100181" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100182" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100183" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200250" name="Get Team" definitionId="msteams-get-team" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300235" definitionId="msteams-get-team" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300219" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300220" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300221" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300222" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300223" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300224" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300225" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300226" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300227" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300228" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300229" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300230" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300231" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300232" key="teamId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300233" name="teamId" content="teamId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300234" name="teamId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200264">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200265" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200266" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200267" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200268" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200269" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200270">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200271" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200272" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200273" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200274" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200275" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400041" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400042" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400043" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400044" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400045" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100190" name="Add Member" outgoing="_mt100011" incoming="_mt100010">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100191" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100192" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100193" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200276" name="Add Member" definitionId="msteams-add-member" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300257" definitionId="msteams-add-member" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300236" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300237" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300238" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300239" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300240" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300241" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300242" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300243" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300244" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300245" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300246" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300247" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300248" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300249" key="teamId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300250" name="teamId" content="teamId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300251" name="teamId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300252" key="userPrincipalName">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300253" name="userPrincipalName" content="userPrincipalName" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300254" name="userPrincipalName" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300255" key="role">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300256" content="" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200293">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200294" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200295" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200296" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200297" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200298" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200299">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200300" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200301" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200302" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200303" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200304" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200305">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200306" name="membershipId" content="membershipId" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200307" name="membershipId" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200308" name="membershipId" content="membershipId" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200309" name="membershipId" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200310" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400046" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400047" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400048" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400049" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400050" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100200" name="Remove Member" outgoing="_mt100012" incoming="_mt100011">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100201" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100202" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100203" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200311" name="Remove Member" definitionId="msteams-remove-member" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300277" definitionId="msteams-remove-member" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300258" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300259" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300260" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300261" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300262" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300263" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300264" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300265" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300266" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300267" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300268" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300269" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300270" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300271" key="teamId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300272" name="teamId" content="teamId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300273" name="teamId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300274" key="membershipId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300275" name="membershipId" content="membershipId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300276" name="membershipId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200328">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200329" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200330" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200331" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200332" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200333" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200334">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200335" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200336" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200337" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200338" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200339" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400051" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400052" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400053" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400054" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400055" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100210" name="Create Meeting" outgoing="_mt100013" incoming="_mt100012">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100211" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100212" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100213" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200340" name="Create Meeting" definitionId="msteams-create-meeting" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300313" definitionId="msteams-create-meeting" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300278" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300279" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300280" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300281" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300282" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300283" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300284" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300285" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300286" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300287" key="authMode">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300288" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300289" key="refreshToken">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300290" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300291" key="userId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300292" name="userId" content="userId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300293" name="userId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300294" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300295" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300296" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300297" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300298" key="subject">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300299" name="meetingSubject" content="meetingSubject" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300300" name="meetingSubject" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300301" key="startDateTime">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300302" name="startDateTime" content="startDateTime" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300303" name="startDateTime" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300304" key="endDateTime">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300305" name="endDateTime" content="endDateTime" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300306" name="endDateTime" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300307" key="allowedPresenters">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300308" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300309" key="lobbyBypassScope">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300310" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300311" key="recordAutomatically">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300312" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200363">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200364" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200365" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200366" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200367" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200368" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200369">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200370" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200371" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200372" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200373" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200374" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200375">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200376" name="meetingId" content="meetingId" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200377" name="meetingId" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200378" name="meetingId" content="meetingId" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200379" name="meetingId" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200380" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400056" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400057" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400058" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400059" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400060" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100220" name="Get Meeting" outgoing="_mt100014" incoming="_mt100013">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100221" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100222" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100223" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200381" name="Get Meeting" definitionId="msteams-get-meeting" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300337" definitionId="msteams-get-meeting" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300314" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300315" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300316" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300317" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300318" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300319" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300320" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300321" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300322" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300323" key="authMode">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300324" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300325" key="refreshToken">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300326" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300327" key="userId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300328" name="userId" content="userId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300329" name="userId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300330" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300331" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300332" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300333" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300334" key="meetingId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300335" name="meetingId" content="meetingId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300336" name="meetingId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200398">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200399" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200400" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200401" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200402" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200403" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200404">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200405" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200406" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200407" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200408" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200409" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400061" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400062" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400063" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400064" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400065" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:ServiceTask" xmi:id="_mt100230" name="Upload File" outgoing="_mt100015" incoming="_mt100014">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt100231" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt100232" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt100233" name="" content="" returnTypeFixed="true"/>
+          <connectors xmi:type="process:Connector" xmi:id="_mt200410" name="Upload File" definitionId="msteams-upload-file" event="ON_ENTER" definitionVersion="1.0.0">
+            <configuration xmi:type="connectorconfiguration:ConnectorConfiguration" xmi:id="_mt300372" definitionId="msteams-upload-file" version="1.0.0" modelVersion="9">
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300338" key="tenantId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300339" name="tenantId" content="tenantId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300340" name="tenantId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300341" key="clientId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300342" name="clientId" content="clientId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300343" name="clientId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300344" key="clientSecret">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300345" name="clientSecret" content="clientSecret" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300346" name="clientSecret" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300347" key="authMode">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300348" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300349" key="refreshToken">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300350" content="" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300351" key="userId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300352" name="userId" content="userId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300353" name="userId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300354" key="connectTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300355" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300356" key="readTimeout">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300357" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300358" key="teamId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300359" name="teamId" content="teamId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300360" name="teamId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300361" key="channelId">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300362" name="channelId" content="channelId" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300363" name="channelId" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300364" key="fileName">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300365" name="fileName" content="fileName" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300366" name="fileName" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300367" key="fileContent">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300368" name="fileContent" content="fileContent" type="TYPE_VARIABLE" returnTypeFixed="true">
+                  <referencedElements xmi:type="process:Data" xmi:id="_mt300369" name="fileContent" dataType="_mt000055"/>
+                </expression>
+              </parameters>
+              <parameters xmi:type="connectorconfiguration:ConnectorParameter" xmi:id="_mt300370" key="contentType">
+                <expression xmi:type="expression:Expression" xmi:id="_mt300371" content="" returnTypeFixed="true"/>
+              </parameters>
+            </configuration>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200433">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200434" name="success" content="success" type="TYPE_VARIABLE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200435" name="success" dataType="_mt000050"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200436" name="success" content="success" type="CONNECTOR_OUTPUT_TYPE" returnType="java.lang.Boolean">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200437" name="success" type="java.lang.Boolean"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200438" type="ASSIGNMENT"/>
+            </outputs>
+            <outputs xmi:type="expression:Operation" xmi:id="_mt200439">
+              <leftOperand xmi:type="expression:Expression" xmi:id="_mt200440" name="errorMessage" content="errorMessage" type="TYPE_VARIABLE">
+                <referencedElements xmi:type="process:Data" xmi:id="_mt200441" name="errorMessage" dataType="_mt000055"/>
+              </leftOperand>
+              <rightOperand xmi:type="expression:Expression" xmi:id="_mt200442" name="errorMessage" content="errorMessage" type="CONNECTOR_OUTPUT_TYPE">
+                <referencedElements xmi:type="definition:Output" xmi:id="_mt200443" name="errorMessage" type="java.lang.String"/>
+              </rightOperand>
+              <operator xmi:type="expression:Operator" xmi:id="_mt200444" type="ASSIGNMENT"/>
+            </outputs>
+          </connectors>
+          <loopCondition xmi:type="expression:Expression" xmi:id="_mt400066" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+          <loopMaximum xmi:type="expression:Expression" xmi:id="_mt400067" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <cardinalityExpression xmi:type="expression:Expression" xmi:id="_mt400068" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
+          <iteratorExpression xmi:type="expression:Expression" xmi:id="_mt400069" name="multiInstanceIterator" content="multiInstanceIterator" type="MULTIINSTANCE_ITERATOR_TYPE" returnType="java.lang.Object" returnTypeFixed="true"/>
+          <completionCondition xmi:type="expression:Expression" xmi:id="_mt400070" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+        </elements>
+        <elements xmi:type="process:EndEvent" xmi:id="_mt000005" name="End" incoming="_mt100015">
+          <dynamicLabel xmi:type="expression:Expression" xmi:id="_mt000010" name="" content="" returnTypeFixed="true"/>
+          <dynamicDescription xmi:type="expression:Expression" xmi:id="_mt000011" name="" content="" returnTypeFixed="true"/>
+          <stepSummary xmi:type="expression:Expression" xmi:id="_mt000012" name="" content="" returnTypeFixed="true"/>
+        </elements>
+      </elements>
+      <formMapping xmi:type="process:FormMapping" xmi:id="_mt000013" type="NONE">
+        <targetForm xmi:type="expression:Expression" xmi:id="_mt000014" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+      </formMapping>
+      <overviewFormMapping xmi:type="process:FormMapping" xmi:id="_mt000015" type="NONE">
+        <targetForm xmi:type="expression:Expression" xmi:id="_mt000016" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
+      </overviewFormMapping>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100001" target="_mt100100" source="_mt000004">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100301"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100302" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100002" target="_mt100110" source="_mt100100">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100303"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100304" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100003" target="_mt100120" source="_mt100110">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100305"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100306" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100004" target="_mt100130" source="_mt100120">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100307"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100308" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100005" target="_mt100140" source="_mt100130">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100309"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100310" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100006" target="_mt100150" source="_mt100140">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100311"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100312" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100007" target="_mt100160" source="_mt100150">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100313"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100314" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100008" target="_mt100170" source="_mt100160">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100315"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100316" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100009" target="_mt100180" source="_mt100170">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100317"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100318" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100010" target="_mt100190" source="_mt100180">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100319"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100320" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100011" target="_mt100200" source="_mt100190">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100321"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100322" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100012" target="_mt100210" source="_mt100200">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100323"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100324" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100013" target="_mt100220" source="_mt100210">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100325"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100326" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100014" target="_mt100230" source="_mt100220">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100327"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100328" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <connections xmi:type="process:SequenceFlow" xmi:id="_mt100015" target="_mt000005" source="_mt100230">
+        <decisionTable xmi:type="decision:DecisionTable" xmi:id="_mt100329"/>
+        <condition xmi:type="expression:Expression" xmi:id="_mt100330" name="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </connections>
+      <data xmi:type="process:Data" xmi:id="_mt100400" name="tenantId" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100401" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100402" name="clientId" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100403" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100404" name="clientSecret" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100405" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100406" name="userId" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100407" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100408" name="teamId" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100409" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100410" name="channelId" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100411" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100412" name="chatId" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100413" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100414" name="messageContent" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100415" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100416" name="parentMessageId" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100417" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100418" name="cardJson" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100419" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100420" name="channelDisplayName" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100421" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100422" name="channelDescription" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100423" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100424" name="createdChannelId" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100425" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100426" name="userPrincipalName" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100427" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100428" name="membershipId" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100429" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100430" name="meetingSubject" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100431" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100432" name="startDateTime" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100433" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100434" name="endDateTime" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100435" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100436" name="meetingId" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100437" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100438" name="fileName" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100439" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100440" name="fileContent" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100441" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100442" name="errorMessage" dataType="_mt000055">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100443" name="" content="" returnType="java.lang.String" returnTypeFixed="true"/>
+      </data>
+      <data xmi:type="process:Data" xmi:id="_mt100444" name="success" dataType="_mt000050">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_mt100445" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
+      </data>
+      <actors xmi:type="process:Actor" xmi:id="_mt000020" name="System" initiator="true"/>
+      <configurations xmi:type="configuration:Configuration" xmi:id="_mt000021" name="local" version="9" username="walter.bates">
+        <actorMappings xmi:type="actormapping:ActorMappingsType" xmi:id="_mt000022">
+          <actorMapping xmi:type="actormapping:ActorMapping" xmi:id="_mt000023" name="System">
+            <groups xmi:type="actormapping:Groups" xmi:id="_mt000024"/>
+            <memberships xmi:type="actormapping:Membership" xmi:id="_mt000025"/>
+            <roles xmi:type="actormapping:Roles" xmi:id="_mt000026">
+              <role>member</role>
+            </roles>
+            <users xmi:type="actormapping:Users" xmi:id="_mt000027"/>
+          </actorMapping>
+        </actorMappings>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_mt000028" id="CONNECTOR"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_mt000029" id="ACTOR_FILTER"/>
+        <processDependencies xmi:type="configuration:FragmentContainer" xmi:id="_mt000030" id="OTHER"/>
+      </configurations>
+      <contract xmi:type="process:Contract" xmi:id="_mt000031"/>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_mt000032">
+        <name xmi:type="expression:Expression" xmi:id="_mt000033" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_mt000034" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_mt000035">
+        <name xmi:type="expression:Expression" xmi:id="_mt000036" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_mt000037" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_mt000038">
+        <name xmi:type="expression:Expression" xmi:id="_mt000039" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_mt000040" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_mt000041">
+        <name xmi:type="expression:Expression" xmi:id="_mt000042" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_mt000043" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+      <searchIndexes xmi:type="process:SearchIndex" xmi:id="_mt000044">
+        <name xmi:type="expression:Expression" xmi:id="_mt000045" content="" returnTypeFixed="true"/>
+        <value xmi:type="expression:Expression" xmi:id="_mt000046" content="" returnTypeFixed="true"/>
+      </searchIndexes>
+    </elements>
+    <datatypes xmi:type="process:BooleanType" xmi:id="_mt000050" name="Boolean"/>
+    <datatypes xmi:type="process:DateType" xmi:id="_mt000051" name="Date"/>
+    <datatypes xmi:type="process:IntegerType" xmi:id="_mt000052" name="Integer"/>
+    <datatypes xmi:type="process:LongType" xmi:id="_mt000053" name="Long"/>
+    <datatypes xmi:type="process:DoubleType" xmi:id="_mt000054" name="Double"/>
+    <datatypes xmi:type="process:StringType" xmi:id="_mt000055" name="Text"/>
+    <datatypes xmi:type="process:JavaType" xmi:id="_mt000056" name="Java_object"/>
+    <datatypes xmi:type="process:XMLType" xmi:id="_mt000057" name="XML"/>
+    <datatypes xmi:type="process:BusinessObjectType" xmi:id="_mt000058" name="Business_Object"/>
+  </process:MainProcess>
+  <notation:Diagram xmi:id="_mt000060" type="Process" element="_mt000001" name="MyDiagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Node" xmi:id="_mt000061" type="2007" element="_mt000002">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt000062" type="5008"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt000063" type="7001">
+        <children xmi:type="notation:Node" xmi:id="_mt000064" type="3007" element="_mt000003">
+          <children xmi:type="notation:DecorationNode" xmi:id="_mt000065" type="5007"/>
+          <children xmi:type="notation:DecorationNode" xmi:id="_mt000066" type="7002">
+            <children xmi:type="notation:Shape" xmi:id="_mt000067" type="3002" element="_mt000004" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt000068" type="5024">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_mt000069" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt000070" x="48" y="75"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100500" type="3027" element="_mt100100" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100501" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100502" x="128" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100510" type="3027" element="_mt100110" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100511" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100512" x="288" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100520" type="3027" element="_mt100120" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100521" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100522" x="448" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100530" type="3027" element="_mt100130" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100531" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100532" x="608" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100540" type="3027" element="_mt100140" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100541" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100542" x="768" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100550" type="3027" element="_mt100150" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100551" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100552" x="928" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100560" type="3027" element="_mt100160" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100561" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100562" x="1088" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100570" type="3027" element="_mt100170" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100571" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100572" x="1248" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100580" type="3027" element="_mt100180" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100581" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100582" x="1408" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100590" type="3027" element="_mt100190" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100591" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100592" x="1568" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100600" type="3027" element="_mt100200" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100601" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100602" x="1728" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100610" type="3027" element="_mt100210" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100611" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100612" x="1888" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100620" type="3027" element="_mt100220" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100621" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100622" x="2048" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt100630" type="3027" element="_mt100230" fontName="Segoe UI" fillColor="14334392" lineColor="10710316">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt100631" type="5017"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt100632" x="2208" y="60" width="120" height="60"/>
+            </children>
+            <children xmi:type="notation:Shape" xmi:id="_mt000071" type="3003" element="_mt000005" fontName="Segoe UI">
+              <children xmi:type="notation:DecorationNode" xmi:id="_mt000072" type="5025">
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_mt000073" y="5"/>
+              </children>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt000074" x="2388" y="75" width="30" height="30"/>
+            </children>
+          </children>
+          <styles xmi:type="notation:DescriptionStyle" xmi:id="_mt000075"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_mt000076" fontName="Segoe UI"/>
+          <styles xmi:type="notation:LineStyle" xmi:id="_mt000077"/>
+          <styles xmi:type="notation:FillStyle" xmi:id="_mt000078"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt000079"/>
+        </children>
+      </children>
+      <styles xmi:type="notation:DescriptionStyle" xmi:id="_mt000080"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt000081" fontName="Segoe UI"/>
+      <styles xmi:type="notation:LineStyle" xmi:id="_mt000082"/>
+      <styles xmi:type="notation:FillStyle" xmi:id="_mt000083"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mt000084" width="2500" height="250"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_mt000085"/>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100700" type="4001" element="_mt100001" source="_mt000067" target="_mt100500" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100701" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100702" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100703" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100704" points="[15, 0, -60, 0]$[15, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100710" type="4001" element="_mt100002" source="_mt100500" target="_mt100510" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100711" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100712" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100713" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100714" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100720" type="4001" element="_mt100003" source="_mt100510" target="_mt100520" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100721" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100722" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100723" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100724" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100730" type="4001" element="_mt100004" source="_mt100520" target="_mt100530" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100731" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100732" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100733" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100734" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100740" type="4001" element="_mt100005" source="_mt100530" target="_mt100540" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100741" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100742" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100743" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100744" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100750" type="4001" element="_mt100006" source="_mt100540" target="_mt100550" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100751" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100752" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100753" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100754" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100760" type="4001" element="_mt100007" source="_mt100550" target="_mt100560" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100761" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100762" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100763" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100764" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100770" type="4001" element="_mt100008" source="_mt100560" target="_mt100570" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100771" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100772" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100773" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100774" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100780" type="4001" element="_mt100009" source="_mt100570" target="_mt100580" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100781" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100782" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100783" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100784" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100790" type="4001" element="_mt100010" source="_mt100580" target="_mt100590" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100791" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100792" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100793" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100794" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100800" type="4001" element="_mt100011" source="_mt100590" target="_mt100600" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100801" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100802" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100803" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100804" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100810" type="4001" element="_mt100012" source="_mt100600" target="_mt100610" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100811" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100812" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100813" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100814" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100820" type="4001" element="_mt100013" source="_mt100610" target="_mt100620" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100821" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100822" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100823" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100824" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100830" type="4001" element="_mt100014" source="_mt100620" target="_mt100630" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100831" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100832" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100833" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100834" points="[60, 0, -60, 0]$[60, 0, -60, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_mt100840" type="4001" element="_mt100015" source="_mt100630" target="_mt000071" roundedBendpointsRadius="10" routing="Rectilinear">
+      <children xmi:type="notation:DecorationNode" xmi:id="_mt100841" type="6001">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mt100842" y="-10"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_mt100843" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mt100844" points="[60, 0, -15, 0]$[60, 0, -15, 0]"/>
+    </edges>
+  </notation:Diagram>
+</xmi:XMI>

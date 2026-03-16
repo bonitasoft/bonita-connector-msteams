@@ -10,7 +10,7 @@
     </parent>
     <artifactId>bonita-connector-msteams-create-channel</artifactId>
     <packaging>jar</packaging>
-    <name>Bonita MS Teams Connector - CreateChannel</name>
+    <name>MS Teams - Create Channel</name>
     <description>Create a channel in a Microsoft Teams team</description>
     <properties>
         <connector.id>msteams-create-channel</connector.id>
