@@ -188,7 +188,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <excludedGroups>integration,e2e</excludedGroups>
+                    <excludedGroups>integration,provider-api,btt</excludedGroups>
                 </configuration>
             </plugin>
             <!-- Failsafe: run integration tests (*IT.java) -->
@@ -286,9 +286,9 @@
             </properties>
         </profile>
 
-        <!-- E2E profile: runs end-to-end tests against real MS Teams tenant -->
+        <!-- ITs profile: runs provider-api tests against real MS Teams tenant -->
         <profile>
-            <id>e2e</id>
+            <id>ITs</id>
             <build>
                 <plugins>
                     <plugin>
@@ -296,15 +296,16 @@
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>3.2.5</version>
                         <configuration>
-                            <groups>e2e</groups>
+                            <groups>provider-api</groups>
                             <includes>
+                                <include>**/*IT.java</include>
                                 <include>**/*E2E*.java</include>
                                 <include>**/*E2ETest.java</include>
                             </includes>
                         </configuration>
                         <executions>
                             <execution>
-                                <id>e2e-tests</id>
+                                <id>provider-api-tests</id>
                                 <goals>
                                     <goal>integration-test</goal>
                                     <goal>verify</goal>

@@ -42,7 +42,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Enable by removing @Disabled and providing credentials.
  * Run with: {@code mvn verify -Pe2e -pl bonita-connector-msteams-all}
  */
-@Tag("e2e")
+@Tag("provider-api")
 @DisplayName("MS Teams Connector E2E Tests")
 @Disabled("Requires MS Teams credentials - set MSTEAMS_* environment variables and remove @Disabled")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
