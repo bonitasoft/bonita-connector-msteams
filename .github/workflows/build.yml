@@ -20,8 +20,34 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml << 'XML'
+          <settings>
+            <servers>
+              <server>
+                <id>bonitasoft-releases</id>
+                <username>${env.JFROG_USER}</username>
+                <password>${env.JFROG_TOKEN}</password>
+              </server>
+            </servers>
+          </settings>
+          XML
+        env:
+          JFROG_USER: ${{ secrets.JFROG_USER }}
+          JFROG_TOKEN: ${{ secrets.JFROG_TOKEN }}
+
       - name: Build & Unit Tests
-        run: mvn clean verify -DskipITs
+        run: |
+          if [ -n "$JFROG_USER" ]; then
+            mvn clean verify -DskipITs
+          else
+            echo "JFrog credentials not available, excluding -all module (BTT tests)"
+            mvn clean verify -DskipITs -pl '!bonita-connector-msteams-all'
+          fi
+        env:
+          JFROG_USER: ${{ secrets.JFROG_USER }}
 
       - name: Upload coverage reports
         uses: actions/upload-artifact@v4
@@ -44,5 +70,24 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml << 'XML'
+          <settings>
+            <servers>
+              <server>
+                <id>bonitasoft-releases</id>
+                <username>${env.JFROG_USER}</username>
+                <password>${env.JFROG_TOKEN}</password>
+              </server>
+            </servers>
+          </settings>
+          XML
+        env:
+          JFROG_USER: ${{ secrets.JFROG_USER }}
+          JFROG_TOKEN: ${{ secrets.JFROG_TOKEN }}
+
       - name: Integration Tests
+        if: ${{ secrets.JFROG_USER != '' }}
         run: mvn verify -pl bonita-connector-msteams-all -am -DskipTests -Dfailsafe.groups=integration
