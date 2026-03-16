@@ -1,0 +1,17 @@
+name: 'Commit Message Check'
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+
+jobs:
+  pr-title:
+    runs-on: ubuntu-24.04
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Check Pull Request title
+        uses: bonitasoft/actions/packages/pr-title-conventional-commits@v3
