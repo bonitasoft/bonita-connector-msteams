@@ -222,7 +222,7 @@
                         <mutators>
                             <mutator>STRONGER</mutator>
                         </mutators>
-                        <mutationThreshold>80</mutationThreshold>
+                        <mutationThreshold>85</mutationThreshold>
                     </configuration>
                     <dependencies>
                         <dependency>
