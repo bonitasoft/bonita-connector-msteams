@@ -1,48 +1,149 @@
-name: Build & Test
+commit cc92e1348de91a9fbdb8f07f7828c8566b7bc5e2
+Author: endikafercu <endika.fernandez-cuesta@bonitasoft.com>
+Date:   Tue Mar 17 00:05:36 2026 +0100
 
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+    ci: use bonitasoft/maven-settings-action for JFrog credentials
+    
+    Align with bonita-connector-ai pattern: use KSM_CONFIG org secret
+    via bonitasoft/maven-settings-action@v1 instead of manual settings.xml.
+    Also update actions to v5, runner to ubuntu-24.04, add concurrency
+    and paths-ignore.
+    
+    Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Build & Unit Tests
-        run: mvn clean verify -DskipITs
-
-      - name: Upload coverage reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: jacoco-reports
-          path: '**/target/site/jacoco/'
-
-  integration-tests:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Integration Tests
-        run: mvn verify -pl bonita-connector-msteams-all -am -DskipTests -Dfailsafe.groups=integration
+diff --git a/.github/workflows/build.yml b/.github/workflows/build.yml
+index 0e3ee88..b7a7261 100644
+--- a/.github/workflows/build.yml
++++ b/.github/workflows/build.yml
+@@ -3,53 +3,54 @@ name: Build & Test
+ on:
+   push:
+     branches: [ main, master ]
++    paths-ignore:
++      - '.claude/**'
++      - 'CLAUDE.md'
++      - '*.md'
++      - '.github/**'
++      - '!.github/workflows/build.yml'
+   pull_request:
+     branches: [ main, master ]
++    paths-ignore:
++      - '.claude/**'
++      - 'CLAUDE.md'
++      - '*.md'
++      - '.github/**'
++      - '!.github/workflows/build.yml'
++
++concurrency:
++  group: ${{ github.workflow }}-${{ github.ref }}
++  cancel-in-progress: true
+ 
+ jobs:
+   build:
+-    runs-on: ubuntu-latest
++    runs-on: ubuntu-24.04
+ 
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@v5
+ 
+       - name: Set up JDK 17
+-        uses: actions/setup-java@v4
++        uses: actions/setup-java@v5
+         with:
+           java-version: '17'
+           distribution: 'temurin'
+           cache: maven
+ 
+-      - name: Configure Maven settings
+-        run: |
+-          mkdir -p ~/.m2
+-          cat > ~/.m2/settings.xml << 'XML'
+-          <settings>
+-            <servers>
+-              <server>
+-                <id>bonitasoft-releases</id>
+-                <username>${env.JFROG_USER}</username>
+-                <password>${env.JFROG_TOKEN}</password>
+-              </server>
+-            </servers>
+-          </settings>
+-          XML
+-        env:
+-          JFROG_USER: ${{ secrets.JFROG_USER }}
+-          JFROG_TOKEN: ${{ secrets.JFROG_TOKEN }}
++      - name: Configure Maven Settings
++        uses: bonitasoft/maven-settings-action@v1
++        with:
++          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
+ 
+       - name: Build & Unit Tests
+-        run: |
+-          if [ -n "$JFROG_USER" ]; then
+-            mvn clean verify -DskipITs
+-          else
+-            echo "JFrog credentials not available, excluding -all module (BTT tests)"
+-            mvn clean verify -DskipITs -pl '!bonita-connector-msteams-all'
+-          fi
+-        env:
+-          JFROG_USER: ${{ secrets.JFROG_USER }}
++        run: mvn -B -ntp clean verify -DskipITs
++
++      - name: Publish Test Report
++        uses: mikepenz/action-junit-report@v6
++        if: always()
++        with:
++          report_paths: '**/target/*-reports/TEST-*.xml'
+ 
+-      - name: Upload coverage reports
++      - name: Upload JaCoCo coverage report
+         uses: actions/upload-artifact@v4
+         if: always()
+         with:
+@@ -57,37 +58,24 @@ jobs:
+           path: '**/target/site/jacoco/'
+ 
+   integration-tests:
+-    runs-on: ubuntu-latest
++    runs-on: ubuntu-24.04
+     needs: build
++    if: ${{ github.event_name == 'push' }}
+ 
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@v5
+ 
+       - name: Set up JDK 17
+-        uses: actions/setup-java@v4
++        uses: actions/setup-java@v5
+         with:
+           java-version: '17'
+           distribution: 'temurin'
+           cache: maven
+ 
+-      - name: Configure Maven settings
+-        run: |
+-          mkdir -p ~/.m2
+-          cat > ~/.m2/settings.xml << 'XML'
+-          <settings>
+-            <servers>
+-              <server>
+-                <id>bonitasoft-releases</id>
+-                <username>${env.JFROG_USER}</username>
+-                <password>${env.JFROG_TOKEN}</password>
+-              </server>
+-            </servers>
+-          </settings>
+-          XML
+-        env:
+-          JFROG_USER: ${{ secrets.JFROG_USER }}
+-          JFROG_TOKEN: ${{ secrets.JFROG_TOKEN }}
++      - name: Configure Maven Settings
++        uses: bonitasoft/maven-settings-action@v1
++        with:
++          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
+ 
+       - name: Integration Tests
+-        if: ${{ secrets.JFROG_USER != '' }}
+-        run: mvn verify -pl bonita-connector-msteams-all -am -DskipTests -Dfailsafe.groups=integration
++        run: mvn -B -ntp verify -pl bonita-connector-msteams-all -am -DskipTests -Dfailsafe.groups=integration
