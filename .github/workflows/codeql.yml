@@ -39,6 +39,11 @@ jobs:
           java-version: 17
           cache: maven
 
+      - name: Configure Maven Settings
+        uses: bonitasoft/maven-settings-action@v1
+        with:
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
+
       - name: Build project
         run: ./mvnw -B -ntp clean package -DskipTests=true
 
