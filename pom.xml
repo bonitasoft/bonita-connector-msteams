@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.bonitasoft.connectors</groupId>
+    <groupId>org.bonitasoft.connectors</groupId>
     <artifactId>bonita-connector-msteams</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-beta.1</version>
     <packaging>jar</packaging>
 
     <name>Bonita Connector - Microsoft Teams</name>
@@ -50,98 +50,98 @@
 
         <!-- Connector definition properties - Send Channel Message -->
         <msteams.send-channel-message.def.id>msteams-send-channel-message</msteams.send-channel-message.def.id>
-        <msteams.send-channel-message.def.version>1.0.0</msteams.send-channel-message.def.version>
+        <msteams.send-channel-message.def.version>1.0.0-beta.1</msteams.send-channel-message.def.version>
         <msteams.send-channel-message.impl.id>${msteams.send-channel-message.def.id}-impl</msteams.send-channel-message.impl.id>
         <msteams.send-channel-message.impl.version>${project.version}</msteams.send-channel-message.impl.version>
         <msteams.send-channel-message.main-class>com.bonitasoft.connectors.msteams.messaging.SendChannelMessageConnector</msteams.send-channel-message.main-class>
 
         <!-- Send Adaptive Card -->
         <msteams.send-adaptive-card.def.id>msteams-send-adaptive-card</msteams.send-adaptive-card.def.id>
-        <msteams.send-adaptive-card.def.version>1.0.0</msteams.send-adaptive-card.def.version>
+        <msteams.send-adaptive-card.def.version>1.0.0-beta.1</msteams.send-adaptive-card.def.version>
         <msteams.send-adaptive-card.impl.id>${msteams.send-adaptive-card.def.id}-impl</msteams.send-adaptive-card.impl.id>
         <msteams.send-adaptive-card.impl.version>${project.version}</msteams.send-adaptive-card.impl.version>
         <msteams.send-adaptive-card.main-class>com.bonitasoft.connectors.msteams.messaging.SendAdaptiveCardConnector</msteams.send-adaptive-card.main-class>
 
         <!-- Send Chat Message -->
         <msteams.send-chat-message.def.id>msteams-send-chat-message</msteams.send-chat-message.def.id>
-        <msteams.send-chat-message.def.version>1.0.0</msteams.send-chat-message.def.version>
+        <msteams.send-chat-message.def.version>1.0.0-beta.1</msteams.send-chat-message.def.version>
         <msteams.send-chat-message.impl.id>${msteams.send-chat-message.def.id}-impl</msteams.send-chat-message.impl.id>
         <msteams.send-chat-message.impl.version>${project.version}</msteams.send-chat-message.impl.version>
         <msteams.send-chat-message.main-class>com.bonitasoft.connectors.msteams.messaging.SendChatMessageConnector</msteams.send-chat-message.main-class>
 
         <!-- Reply Message -->
         <msteams.reply-message.def.id>msteams-reply-message</msteams.reply-message.def.id>
-        <msteams.reply-message.def.version>1.0.0</msteams.reply-message.def.version>
+        <msteams.reply-message.def.version>1.0.0-beta.1</msteams.reply-message.def.version>
         <msteams.reply-message.impl.id>${msteams.reply-message.def.id}-impl</msteams.reply-message.impl.id>
         <msteams.reply-message.impl.version>${project.version}</msteams.reply-message.impl.version>
         <msteams.reply-message.main-class>com.bonitasoft.connectors.msteams.messaging.ReplyMessageConnector</msteams.reply-message.main-class>
 
         <!-- List Channels -->
         <msteams.list-channels.def.id>msteams-list-channels</msteams.list-channels.def.id>
-        <msteams.list-channels.def.version>1.0.0</msteams.list-channels.def.version>
+        <msteams.list-channels.def.version>1.0.0-beta.1</msteams.list-channels.def.version>
         <msteams.list-channels.impl.id>${msteams.list-channels.def.id}-impl</msteams.list-channels.impl.id>
         <msteams.list-channels.impl.version>${project.version}</msteams.list-channels.impl.version>
         <msteams.list-channels.main-class>com.bonitasoft.connectors.msteams.channels.ListChannelsConnector</msteams.list-channels.main-class>
 
         <!-- Create Channel -->
         <msteams.create-channel.def.id>msteams-create-channel</msteams.create-channel.def.id>
-        <msteams.create-channel.def.version>1.0.0</msteams.create-channel.def.version>
+        <msteams.create-channel.def.version>1.0.0-beta.1</msteams.create-channel.def.version>
         <msteams.create-channel.impl.id>${msteams.create-channel.def.id}-impl</msteams.create-channel.impl.id>
         <msteams.create-channel.impl.version>${project.version}</msteams.create-channel.impl.version>
         <msteams.create-channel.main-class>com.bonitasoft.connectors.msteams.channels.CreateChannelConnector</msteams.create-channel.main-class>
 
         <!-- Delete Channel -->
         <msteams.delete-channel.def.id>msteams-delete-channel</msteams.delete-channel.def.id>
-        <msteams.delete-channel.def.version>1.0.0</msteams.delete-channel.def.version>
+        <msteams.delete-channel.def.version>1.0.0-beta.1</msteams.delete-channel.def.version>
         <msteams.delete-channel.impl.id>${msteams.delete-channel.def.id}-impl</msteams.delete-channel.impl.id>
         <msteams.delete-channel.impl.version>${project.version}</msteams.delete-channel.impl.version>
         <msteams.delete-channel.main-class>com.bonitasoft.connectors.msteams.channels.DeleteChannelConnector</msteams.delete-channel.main-class>
 
         <!-- List Teams -->
         <msteams.list-teams.def.id>msteams-list-teams</msteams.list-teams.def.id>
-        <msteams.list-teams.def.version>1.0.0</msteams.list-teams.def.version>
+        <msteams.list-teams.def.version>1.0.0-beta.1</msteams.list-teams.def.version>
         <msteams.list-teams.impl.id>${msteams.list-teams.def.id}-impl</msteams.list-teams.impl.id>
         <msteams.list-teams.impl.version>${project.version}</msteams.list-teams.impl.version>
         <msteams.list-teams.main-class>com.bonitasoft.connectors.msteams.teams.ListTeamsConnector</msteams.list-teams.main-class>
 
         <!-- Get Team -->
         <msteams.get-team.def.id>msteams-get-team</msteams.get-team.def.id>
-        <msteams.get-team.def.version>1.0.0</msteams.get-team.def.version>
+        <msteams.get-team.def.version>1.0.0-beta.1</msteams.get-team.def.version>
         <msteams.get-team.impl.id>${msteams.get-team.def.id}-impl</msteams.get-team.impl.id>
         <msteams.get-team.impl.version>${project.version}</msteams.get-team.impl.version>
         <msteams.get-team.main-class>com.bonitasoft.connectors.msteams.teams.GetTeamConnector</msteams.get-team.main-class>
 
         <!-- Add Member -->
         <msteams.add-member.def.id>msteams-add-member</msteams.add-member.def.id>
-        <msteams.add-member.def.version>1.0.0</msteams.add-member.def.version>
+        <msteams.add-member.def.version>1.0.0-beta.1</msteams.add-member.def.version>
         <msteams.add-member.impl.id>${msteams.add-member.def.id}-impl</msteams.add-member.impl.id>
         <msteams.add-member.impl.version>${project.version}</msteams.add-member.impl.version>
         <msteams.add-member.main-class>com.bonitasoft.connectors.msteams.teams.AddMemberConnector</msteams.add-member.main-class>
 
         <!-- Remove Member -->
         <msteams.remove-member.def.id>msteams-remove-member</msteams.remove-member.def.id>
-        <msteams.remove-member.def.version>1.0.0</msteams.remove-member.def.version>
+        <msteams.remove-member.def.version>1.0.0-beta.1</msteams.remove-member.def.version>
         <msteams.remove-member.impl.id>${msteams.remove-member.def.id}-impl</msteams.remove-member.impl.id>
         <msteams.remove-member.impl.version>${project.version}</msteams.remove-member.impl.version>
         <msteams.remove-member.main-class>com.bonitasoft.connectors.msteams.teams.RemoveMemberConnector</msteams.remove-member.main-class>
 
         <!-- Create Meeting -->
         <msteams.create-meeting.def.id>msteams-create-meeting</msteams.create-meeting.def.id>
-        <msteams.create-meeting.def.version>1.0.0</msteams.create-meeting.def.version>
+        <msteams.create-meeting.def.version>1.0.0-beta.1</msteams.create-meeting.def.version>
         <msteams.create-meeting.impl.id>${msteams.create-meeting.def.id}-impl</msteams.create-meeting.impl.id>
         <msteams.create-meeting.impl.version>${project.version}</msteams.create-meeting.impl.version>
         <msteams.create-meeting.main-class>com.bonitasoft.connectors.msteams.meetings.CreateMeetingConnector</msteams.create-meeting.main-class>
 
         <!-- Get Meeting -->
         <msteams.get-meeting.def.id>msteams-get-meeting</msteams.get-meeting.def.id>
-        <msteams.get-meeting.def.version>1.0.0</msteams.get-meeting.def.version>
+        <msteams.get-meeting.def.version>1.0.0-beta.1</msteams.get-meeting.def.version>
         <msteams.get-meeting.impl.id>${msteams.get-meeting.def.id}-impl</msteams.get-meeting.impl.id>
         <msteams.get-meeting.impl.version>${project.version}</msteams.get-meeting.impl.version>
         <msteams.get-meeting.main-class>com.bonitasoft.connectors.msteams.meetings.GetMeetingConnector</msteams.get-meeting.main-class>
 
         <!-- Upload File -->
         <msteams.upload-file.def.id>msteams-upload-file</msteams.upload-file.def.id>
-        <msteams.upload-file.def.version>1.0.0</msteams.upload-file.def.version>
+        <msteams.upload-file.def.version>1.0.0-beta.1</msteams.upload-file.def.version>
         <msteams.upload-file.impl.id>${msteams.upload-file.def.id}-impl</msteams.upload-file.impl.id>
         <msteams.upload-file.impl.version>${project.version}</msteams.upload-file.impl.version>
         <msteams.upload-file.main-class>com.bonitasoft.connectors.msteams.files.UploadFileConnector</msteams.upload-file.main-class>

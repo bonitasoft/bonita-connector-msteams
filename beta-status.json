@@ -1,0 +1,20 @@
+{
+  "connector": "bonita-connector-msteams",
+  "currentVersion": "1.0.0-beta.1",
+  "operations": {
+    "msteams-add-member": { "status": "untested", "issue": null, "version": null },
+    "msteams-create-channel": { "status": "untested", "issue": null, "version": null },
+    "msteams-create-meeting": { "status": "untested", "issue": null, "version": null },
+    "msteams-delete-channel": { "status": "untested", "issue": null, "version": null },
+    "msteams-get-meeting": { "status": "untested", "issue": null, "version": null },
+    "msteams-get-team": { "status": "untested", "issue": null, "version": null },
+    "msteams-list-channels": { "status": "untested", "issue": null, "version": null },
+    "msteams-list-teams": { "status": "untested", "issue": null, "version": null },
+    "msteams-remove-member": { "status": "untested", "issue": null, "version": null },
+    "msteams-reply-message": { "status": "untested", "issue": null, "version": null },
+    "msteams-send-adaptive-card": { "status": "untested", "issue": null, "version": null },
+    "msteams-send-channel-message": { "status": "untested", "issue": null, "version": null },
+    "msteams-send-chat-message": { "status": "untested", "issue": null, "version": null },
+    "msteams-upload-file": { "status": "untested", "issue": null, "version": null }
+  }
+}
