@@ -12,6 +12,13 @@
     <name>Bonita Connector - Microsoft Teams</name>
     <description>Bonita BPM connector for Microsoft Teams integration (messages, channels, teams, meetings, files)</description>
 
+    <licenses>
+        <license>
+            <name>GNU General Public License v2.0</name>
+            <url>https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</url>
+        </license>
+    </licenses>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
