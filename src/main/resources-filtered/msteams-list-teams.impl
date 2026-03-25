@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <implementation:connectorImplementation
     xmlns:implementation="http://www.bonitasoft.org/ns/connector/implementation/6.0">
-    <implementationId>${msteams.list-teams.impl.id}</implementationId>
-    <implementationVersion>${msteams.list-teams.impl.version}</implementationVersion>
-    <definitionId>${msteams.list-teams.def.id}</definitionId>
-    <definitionVersion>${msteams.list-teams.def.version}</definitionVersion>
-    <implementationClassname>${msteams.list-teams.main-class}</implementationClassname>
+    <implementationId>${msteams-list-teams.impl.id}</implementationId>
+    <implementationVersion>${msteams-list-teams.impl.version}</implementationVersion>
+    <definitionId>${msteams-list-teams.def.id}</definitionId>
+    <definitionVersion>${msteams-list-teams.def.version}</definitionVersion>
+    <implementationClassname>${msteams-list-teams.main-class}</implementationClassname>
     <hasSources>false</hasSources>
     <description>List teams via Graph API implementation</description>
 ${connector-dependencies}

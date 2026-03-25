@@ -3,8 +3,8 @@
     xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <id>${msteams.send-chat-message.def.id}</id>
-    <version>${msteams.send-chat-message.def.version}</version>
+    <id>${msteams-send-chat-message.def.id}</id>
+    <version>${msteams-send-chat-message.def.version}</version>
     <icon>msteams.png</icon>
     <category icon="msteams.png" id="MicrosoftTeams"/>
 

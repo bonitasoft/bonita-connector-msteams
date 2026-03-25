@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <implementation:connectorImplementation
     xmlns:implementation="http://www.bonitasoft.org/ns/connector/implementation/6.0">
-    <implementationId>${msteams.delete-channel.impl.id}</implementationId>
-    <implementationVersion>${msteams.delete-channel.impl.version}</implementationVersion>
-    <definitionId>${msteams.delete-channel.def.id}</definitionId>
-    <definitionVersion>${msteams.delete-channel.def.version}</definitionVersion>
-    <implementationClassname>${msteams.delete-channel.main-class}</implementationClassname>
+    <implementationId>${msteams-delete-channel.impl.id}</implementationId>
+    <implementationVersion>${msteams-delete-channel.impl.version}</implementationVersion>
+    <definitionId>${msteams-delete-channel.def.id}</definitionId>
+    <definitionVersion>${msteams-delete-channel.def.version}</definitionVersion>
+    <implementationClassname>${msteams-delete-channel.main-class}</implementationClassname>
     <hasSources>false</hasSources>
     <description>Delete channel via Graph API implementation</description>
 ${connector-dependencies}

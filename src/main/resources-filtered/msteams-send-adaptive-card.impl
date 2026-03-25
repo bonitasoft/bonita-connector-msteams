@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <implementation:connectorImplementation
     xmlns:implementation="http://www.bonitasoft.org/ns/connector/implementation/6.0">
-    <implementationId>${msteams.send-adaptive-card.impl.id}</implementationId>
-    <implementationVersion>${msteams.send-adaptive-card.impl.version}</implementationVersion>
-    <definitionId>${msteams.send-adaptive-card.def.id}</definitionId>
-    <definitionVersion>${msteams.send-adaptive-card.def.version}</definitionVersion>
-    <implementationClassname>${msteams.send-adaptive-card.main-class}</implementationClassname>
+    <implementationId>${msteams-send-adaptive-card.impl.id}</implementationId>
+    <implementationVersion>${msteams-send-adaptive-card.impl.version}</implementationVersion>
+    <definitionId>${msteams-send-adaptive-card.def.id}</definitionId>
+    <definitionVersion>${msteams-send-adaptive-card.def.version}</definitionVersion>
+    <implementationClassname>${msteams-send-adaptive-card.main-class}</implementationClassname>
     <hasSources>false</hasSources>
     <description>Send adaptive card via webhook implementation</description>
 ${connector-dependencies}

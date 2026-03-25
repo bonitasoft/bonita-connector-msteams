@@ -3,8 +3,8 @@
     xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <id>${msteams.get-team.def.id}</id>
-    <version>${msteams.get-team.def.version}</version>
+    <id>${msteams-get-team.def.id}</id>
+    <version>${msteams-get-team.def.version}</version>
     <icon>msteams.png</icon>
     <category icon="msteams.png" id="MicrosoftTeams"/>
 
