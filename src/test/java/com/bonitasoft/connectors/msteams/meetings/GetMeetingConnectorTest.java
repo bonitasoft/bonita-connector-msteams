@@ -49,4 +49,37 @@ class GetMeetingConnectorTest {
         assertThat(connector.getOutputs().get("success")).isEqualTo(true);
         assertThat(connector.getOutputs().get("subject")).isEqualTo("Sync");
     }
+
+    @Test
+    void should_set_error_outputs_when_api_fails() {
+        connector.setGraphClient(graphClient);
+        when(graphClient.get(any())).thenThrow(
+                new com.bonitasoft.connectors.msteams.common.MsTeamsException("Meeting not found"));
+        org.junit.jupiter.api.Assertions.assertThrows(
+                org.bonitasoft.engine.connector.ConnectorException.class,
+                () -> connector.executeBusinessLogic());
+        assertThat(connector.getOutputs().get("success")).isEqualTo(false);
+    }
+
+    @Test
+    void should_fail_validation_when_userId_missing() {
+        var c = new GetMeetingConnector();
+        c.setInputParameters(new HashMap<>(Map.of(
+                "tenantId", "t", "clientId", "c", "clientSecret", "s",
+                "refreshToken", "rt", "meetingId", "meet-1")));
+        org.junit.jupiter.api.Assertions.assertThrows(
+                org.bonitasoft.engine.connector.ConnectorValidationException.class,
+                c::validateInputParameters);
+    }
+
+    @Test
+    void should_fail_validation_when_meetingId_missing() {
+        var c = new GetMeetingConnector();
+        c.setInputParameters(new HashMap<>(Map.of(
+                "tenantId", "t", "clientId", "c", "clientSecret", "s",
+                "refreshToken", "rt", "userId", "user-1")));
+        org.junit.jupiter.api.Assertions.assertThrows(
+                org.bonitasoft.engine.connector.ConnectorValidationException.class,
+                c::validateInputParameters);
+    }
 }

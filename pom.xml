@@ -347,12 +347,12 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.60</minimum>
+                                            <minimum>0.80</minimum>
                                         </limit>
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.50</minimum>
+                                            <minimum>0.70</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -378,26 +378,40 @@
                     <mutators>
                         <mutator>STRONGER</mutator>
                     </mutators>
-                    <mutationThreshold>80</mutationThreshold>
+                    <mutationThreshold>85</mutationThreshold>
                     <targetClasses>
                         <param>com.bonitasoft.connectors.msteams.common.*</param>
                     </targetClasses>
                 </configuration>
             </plugin>
 
-            <!-- Assembly -->
+            <!-- Shade (fat JAR with -bonita classifier) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.7.1</version>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.2</version>
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
                         <phase>package</phase>
-                        <goals><goal>single</goal></goals>
+                        <goals><goal>shade</goal></goals>
                         <configuration>
-                            <descriptorSourceDirectory>${project.basedir}/src/assembly</descriptorSourceDirectory>
-                            <appendAssemblyId>true</appendAssemblyId>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>bonita</shadedClassifierName>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"/>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>

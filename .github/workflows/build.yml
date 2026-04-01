@@ -24,26 +24,39 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  JAVA_VERSION: '17'
+  JAVA_DISTRIBUTION: 'temurin'
+
 jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
 
-      - name: Setup Java
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v5
         with:
-          distribution: temurin
-          java-version: 17
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
           cache: maven
 
-      - name: Configure Maven Settings
+      - name: Configure Maven settings
         uses: bonitasoft/maven-settings-action@v1
         with:
           keeper-secret-config: ${{ secrets.KSM_CONFIG }}
 
-      - name: Build and test
-        run: ./mvnw -B -ntp verify
+      - name: Build & Unit Tests
+        run: ./mvnw -B -ntp clean verify -DskipITs
+
+      - name: Verify -bonita.jar artifact
+        run: |
+          BONITA_JAR=$(ls target/*-bonita.jar 2>/dev/null | head -1)
+          if [ -z "$BONITA_JAR" ]; then
+            echo "ERROR: No -bonita.jar artifact found"
+            exit 1
+          fi
+          echo "Found: $BONITA_JAR ($(du -h "$BONITA_JAR" | cut -f1))"
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v6
@@ -51,6 +64,59 @@ jobs:
         with:
           report_paths: '**/target/*-reports/TEST-*.xml'
 
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: target/site/jacoco/
+
       - name: Publish Snapshots to Maven Central
         if: contains(github.ref, 'develop') || contains(github.ref, 'support/')
         run: ./mvnw -B -ntp deploy -DskipTests
+
+  integration-tests:
+    runs-on: ubuntu-24.04
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v5
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          cache: maven
+
+      - name: Configure Maven settings
+        uses: bonitasoft/maven-settings-action@v1
+        with:
+          keeper-secret-config: ${{ secrets.KSM_CONFIG }}
+
+      - name: Integration Tests (WireMock)
+        run: ./mvnw -B -ntp verify -PITs -DskipTests
+
+  mutation-testing:
+    runs-on: ubuntu-24.04
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v5
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          cache: maven
+
+      - name: Mutation Testing (Pitest)
+        run: ./mvnw -B -ntp test org.pitest:pitest-maven:mutationCoverage
+
+      - name: Upload mutation report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pitest-report
+          path: target/pit-reports/
