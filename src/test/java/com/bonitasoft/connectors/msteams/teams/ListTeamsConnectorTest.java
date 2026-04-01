@@ -54,4 +54,15 @@ class ListTeamsConnectorTest {
         assertThat(connector.getOutputs().get("success")).isEqualTo(true);
         assertThat(connector.getOutputs().get("teamCount")).isEqualTo(1);
     }
+
+    @Test
+    void should_set_error_outputs_when_api_fails() {
+        connector.setGraphClient(graphClient);
+        when(graphClient.getWithPagination(any())).thenThrow(
+                new com.bonitasoft.connectors.msteams.common.MsTeamsException("Access denied"));
+        org.junit.jupiter.api.Assertions.assertThrows(
+                org.bonitasoft.engine.connector.ConnectorException.class,
+                () -> connector.executeBusinessLogic());
+        assertThat(connector.getOutputs().get("success")).isEqualTo(false);
+    }
 }

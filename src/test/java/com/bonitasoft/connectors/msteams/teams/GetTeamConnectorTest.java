@@ -47,4 +47,25 @@ class GetTeamConnectorTest {
         assertThat(connector.getOutputs().get("success")).isEqualTo(true);
         assertThat(connector.getOutputs().get("displayName")).isEqualTo("Engineering");
     }
+
+    @Test
+    void should_set_error_outputs_when_api_fails() {
+        connector.setGraphClient(graphClient);
+        when(graphClient.get(any())).thenThrow(
+                new com.bonitasoft.connectors.msteams.common.MsTeamsException("Team not found"));
+        org.junit.jupiter.api.Assertions.assertThrows(
+                org.bonitasoft.engine.connector.ConnectorException.class,
+                () -> connector.executeBusinessLogic());
+        assertThat(connector.getOutputs().get("success")).isEqualTo(false);
+    }
+
+    @Test
+    void should_fail_validation_when_teamId_missing() {
+        var c = new GetTeamConnector();
+        c.setInputParameters(new HashMap<>(Map.of(
+                "tenantId", "t", "clientId", "c", "clientSecret", "s")));
+        org.junit.jupiter.api.Assertions.assertThrows(
+                org.bonitasoft.engine.connector.ConnectorValidationException.class,
+                c::validateInputParameters);
+    }
 }
