@@ -11,6 +11,17 @@
 
     <name>Bonita Connector - Microsoft Teams</name>
     <description>Bonita BPM connector for Microsoft Teams integration (messages, channels, teams, meetings, files)</description>
+    <url>https://www.bonitasoft.com</url>
+
+    <developers>
+        <developer>
+            <id>bonitasoft</id>
+            <name>Bonitasoft</name>
+            <email>rd.user@bonitasoft.com</email>
+            <organization>Bonitasoft</organization>
+            <organizationUrl>https://www.bonitasoft.com</organizationUrl>
+        </developer>
+    </developers>
 
     <licenses>
         <license>
@@ -385,6 +396,43 @@
                 </configuration>
             </plugin>
 
+            <!-- Source JAR (required for Maven Central) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals><goal>jar-no-fork</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Javadoc JAR (required for Maven Central) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.7.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals><goal>jar</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Central Publishing (Maven Central) -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.8.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <autoPublish>true</autoPublish>
+                </configuration>
+            </plugin>
+
             <!-- Shade (fat JAR with -bonita classifier) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -419,7 +467,46 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>bonitasoft-releases</id>
+            <url>https://bonitasoft.jfrog.io/artifactory/maven</url>
+        </repository>
+    </repositories>
+
+    <scm>
+        <connection>scm:git:git://github.com/bonitasoft/bonita-connector-msteams.git</connection>
+        <developerConnection>scm:git:ssh://github.com:bonitasoft/bonita-connector-msteams.git</developerConnection>
+        <url>https://github.com/bonitasoft/bonita-connector-msteams</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <profiles>
+        <profile>
+            <id>deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.7</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals><goal>sign</goal></goals>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <profile>
             <id>ITs</id>
             <build>

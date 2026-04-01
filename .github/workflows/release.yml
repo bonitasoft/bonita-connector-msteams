@@ -36,5 +36,7 @@ jobs:
             {
               "artifactId": "bonita-connector-msteams",
               "version": "${{ inputs.version }}",
-              "bonitaMinVersion": "10.2"
+              "bonitaMinVersion": "10.2",
+              "connectorName": "Microsoft Teams",
+              "iconUrl": "https://raw.githubusercontent.com/bonitasoft/bonita-connector-msteams/main/src/main/resources/msteams.png"
             }
